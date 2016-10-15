@@ -29,6 +29,13 @@
 
 \usepackage{sectsty} % Allows customizing section commands
 \allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+\sectionfont{\raggedright}
+\usepackage[english]{babel}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\graphicspath{ {img/} }
+\usepackage{pbox}
+
 
 \usepackage{fancyhdr} % Custom headers and footers
 \pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
@@ -63,7 +70,6 @@
 \author{Yi Hsiao} % Your name
 
 \date{\normalsize\today} % Today's date or a custom date
-
 \begin{document}
 
 \maketitle % Print the title
@@ -71,8 +77,24 @@
 %----------------------------------------------------------------------------------------
 %	PROBLEM 1
 %----------------------------------------------------------------------------------------
+\newpage
+\section{}
+Complete the following table. Assume mass action kinetics for all reaction mechanisms.
 
-\section{Problem Set 2.4.7}
+\begin{center}
+    \begin{tabular}{| l | l | l | l |}
+    \hline
+    &Interaction graph&Rate equation scheme&ODE\\ \hline
+	a) & $\xrightarrow{} A\xrightarrow{}$ & \raisebox{-\totalheight}{\includegraphics{1a}} & $\frac{d\left[A\right]}{dt}=k_{1}-k_{2}\left[A \right]$\\ \hline
+    b) & \raisebox{-\totalheight}{\includegraphics{1b}} & $A+B\xleftrightarrow[k_{-1}]{k_{1}}C+D$ & \parbox{5cm}{$\frac{d\left[A\right]}{dt}=-k_{1}\left[A \right]\left[B \right]+k_{-1}\left[C \right]\left[D \right]$,\\ $\frac{d\left[B\right]}{dt}=-k_{1}\left[A \right]\left[B \right]+k_{-1}\left[C \right]\left[D \right]$, \\ $\frac{d\left[C\right]}{dt}=k_{1}\left[A \right]\left[B \right]-k_{-1}\left[C \right]\left[D \right]$, \\ $\frac{d\left[D\right]}{dt}=k_{1}\left[A \right]\left[B \right]-k_{-1}\left[C \right]\left[D \right]$} \\ \hline
+    c) & \raisebox{-\totalheight}{\includegraphics[scale=0.35]{1c-1}} & \parbox{5cm}{$A+B\xleftrightarrow[k_{-1}]{k_{1}}C\xrightarrow{k_{2}} D$} & \raisebox{-\totalheight}{\includegraphics[scale=0.7]{1c}}  \\\hline
+    d) & \raisebox{-\totalheight}{\includegraphics{1d}} & \parbox{5cm}{$A\xrightarrow{k_{1}}B$ \\ $B\xrightarrow{k_{2}}C$\\ $C\xrightarrow{k_{3}}D$ \\ $D\xrightarrow{k_{4}}A$ } & \parbox{5cm}{$\frac{d\left[A\right]}{dt}=-k_{1}\left[A \right]+k_{4}\left[D \right]$ \\ $\frac{d\left[B\right]}{dt}=-k_{2}\left[B \right]+k_{1}\left[A \right]$ \\ $\frac{d\left[C\right]}{dt}=-k_{3}\left[C \right]+k_{2}\left[B \right]$ \\ $\frac{d\left[D\right]}{dt}=-k_{4}\left[D \right]+k_{3}\left[C \right]$}  \\\hline
+    e) & \raisebox{-\totalheight}{\includegraphics{1e-1}} & \raisebox{-\totalheight}{\includegraphics{1e}} & \parbox{5cm}{$\frac{d\left[A\right]}{dt}=-2k_{1}\left[A \right]^{2}$, \\ $\frac{d\left[C\right]}{dt}=k_{1}\left[A \right]^{2}$}\\\hline
+    \end{tabular}
+\end{center}
+
+\section{}
+\subsection{Problem Set 2.4.7}
 \begin{enumerate}[a)]
 	\item Consider the closed reaction network in Figure 2.16 with reaction rates $v_{i}$ as indicated. Suppose that the reaction rates are given by mass action as $v_{1}= k_{1}\left[ A \right]\left[ B \right]$, $v_{2} = k_{2}\left[ D \right]$ and $v_{3} = k_{3}\left[ C \right]$.
 	\begin{enumerate}[i)]
@@ -97,84 +119,17 @@
 	\end{align*}
 
 	\item Solve for the steady-state concentrations as functions of the rate constants and the initial concentrations. (Note, because the system is closed, some of the steady-state concentrations are zero.)
+
+	
+	
 	\item Verify your result in part (ii) by running a simulation of the system from initial conditions (in mM) of ([A], [B], [C], [D], [E], [F]) = (1, 1, 1 , 0, 0, 0). Take rate constants k1 = 3/mM/sec, k2 = 1/sec, k3 = 4/sec.
 	\end{enumerate}
 	\item Next consider the open system in Figure 2.17 with reaction rates vi as indicated. Suppose that the reaction rates are given by mass action as v0 = k0, v1 = k1[A][B], v2 = k2[D], v3 = k3[C], v4 = k4[E], and v5 = k5[F].
 \end{enumerate}
 
-\lipsum[2] % Dummy text
+\subsection{Problem Set 2.4.8}
 
-\begin{align} 
-\begin{split}
-(x+y)^3 	&= (x+y)^2(x+y)\\
-&=(x^2+2xy+y^2)(x+y)\\
-&=(x^3+2x^2y+xy^2) + (x^2y+2xy^2+y^3)\\
-&=x^3+3x^2y+3xy^2+y^3
-\end{split}					
-\end{align}
-
-Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies
-
-%------------------------------------------------
-
-\subsection{Heading on level 2 (subsection)}
-
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. 
-\begin{align}
-A = 
-\begin{bmatrix}
-A_{11} & A_{21} \\
-A_{21} & A_{22}
-\end{bmatrix}
-\end{align}
-Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
-
-%------------------------------------------------
-
-\subsubsection{Heading on level 3 (subsubsection)}
-
-\lipsum[3] % Dummy text
-
-\paragraph{Heading on level 4 (paragraph)}
-
-\lipsum[6] % Dummy text
-
-%----------------------------------------------------------------------------------------
-%	PROBLEM 2
-%----------------------------------------------------------------------------------------
-
-\section{Problem Set 2.4.8}
-
-
-
-\section{Problem Set 2.4.9}
-
-\section{Lists}
-
-%------------------------------------------------
-
-\subsection{Example of list (3*itemize)}
-\begin{itemize}
-	\item First item in a list 
-		\begin{itemize}
-		\item First item in a list 
-			\begin{itemize}
-			\item First item in a list 
-			\item Second item in a list 
-			\end{itemize}
-		\item Second item in a list 
-		\end{itemize}
-	\item Second item in a list 
-\end{itemize}
-
-%------------------------------------------------
-
-\subsection{Example of list (enumerate)}
-\begin{enumerate}
-\item First item in a list 
-\item Second item in a list 
-\item Third item in a list
-\end{enumerate}
+\subsection{Problem Set 2.4.9}
 
 %----------------------------------------------------------------------------------------
 
