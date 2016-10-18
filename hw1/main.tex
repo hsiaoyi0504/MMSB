@@ -204,11 +204,27 @@ Complete the following table. Assume mass action kinetics for all reaction mecha
 
 		We can derive a model which consists of following differential equations:
 		\begin{align*}
-			\frac{d\left[A\right]}{dt}=-k_{1}\left[A\right]+k_{1}\left[B\right], \frac{d\left[B\right]}{dt}=k_{1}\left[A\right]-(k_{2}+k_{-1})\left[B\right]+k_{-2}\left[C\right], \frac{d\left[C\right]}{dt}=k_{2}\left[B\right]-k_{-2}\left[C\right]
+			\frac{d\left[A\right]}{dt}=-k_{1}\left[A\right]+k_{-1}\left[B\right], \frac{d\left[B\right]}{dt}=k_{1}\left[A\right]-(k_{2}+k_{-1})\left[B\right]+k_{-2}\left[C\right], \frac{d\left[C\right]}{dt}=k_{2}\left[B\right]-k_{-2}\left[C\right]
 		\end{align*}
+
 		\item It should be clear from your simulation in part (a) that the system dynamics occur on two different time-scales. This is also apparent in the widely separated rate constants. Use a rapid equilibrium assumption to reduce your description of the system to two differential equations (describing one of the original species and one combined species pool) and two algebraic equations (describing the contents of the combined pool).
 
+		The rate constants of the reverse reaction between B and C are much larger than the rate constants of the reverse reaction between A and B, so we can assume rapid equilibrium between B and C. Let us denote the combined pool of B and C as D and denote the approximated concentrations of B, C, and D as $\tilde{b(t)}$, $\tilde{c(t)}$ ,and $\tilde{d(t)}$, respectively.
+		
+		From rapid equilibrium approximation, \\
+		$\frac{\tilde{b(t)}}{\tilde{c(t)}}=\frac{k_{-2}}{k_2}$
+		
+		and from total concentration in the pool of B and C,\\
+		$\tilde{d(t)}=\tilde{b(t)}+\tilde{c(t)}=(1+\frac{k_2}{k_{-2}})\tilde{b(t)}$
 
+		so we can rewrite the reaction of the system as $A \xrightleftharpoons[k_{-3}]{k_{3}} D$\\
+		$\frac{d(\tilde{d(t)})}{dt}=v_{3}-v_{-3}$\\
+		$\frac{d\tilde{a(t)}}{dt}=-v_{3}+v_{-3}$ (two differential equations)\\
+		where\\
+		$v_{3}=k_1\tilde{a(t)}=k_3\tilde{a(t)}$\\
+		$v_{-3}=k_{-1}\tilde{b(t)}=k_{-1}\frac{k_{-2}}{k_2+k_{-2}}\tilde{d(t)}=k_{-3}\tilde{d(t)}=$
+		(two algebraic equations)\\
+		That is, we can represent the reverse reaction as $A \xrightleftharpoons[\frac{k_{-1}k_{-2}}{k_2+k_{-2}}]{k_{1}} D$
 
 		\item Run a simulation of your reduced model in part (b) to compare with the simulation in part (a). Verify that the simulation of the reduced system is in good agreement with the original, except for a short initial transient. (Note, you will have to select initial conditions for the reduced system so that the initial total concentration is in agreement with part (a), and the rapid equilibrium condition is satisfied at time t = 0.)
 	\end{enumerate}
@@ -216,11 +232,26 @@ Complete the following table. Assume mass action kinetics for all reaction mecha
 	Consider the reaction network:\\
 	\\
 	Suppose the mass action rate constants are (in min\textsuperscript{-1}) $k_{0}=1, k_{1} = 11, k_{-1} = 8,$ and $k_{2} = 0.2$.
-	\begin{enumerate}
+	\begin{enumerate}[a)]
 		\item Construct a differential equation model of the system. Simulate your model with initial conditions A(0) = 6 mM, B(0) = 0 mM. Plot the transient and steady-state behaviour of the system. You may need to make two plots to capture all of the dynamics (i.e. two different window sizes).
 
+		We can derive a model which consists of following differential equations:
+		\begin{align*}
+			\frac{d\left[A\right]}{dt}&=k_0-(k_1+k_2)\left[A\right]+k_{-1}\left[B\right],& \frac{d\left[B\right]}{dt}&=k_{1}\left[A\right]-k_{-1}\left[B\right]&
+		\end{align*}
 
 		\item It should be clear from your simulation in part (a) that the system dynamics occur on two different time-scales. This is also apparent in the widely separated rate constants. Use a quasi-steady-state assumption to reduce your description of the system by replacing a differential equation with an algebraic equation.
+
+		The rate constants of the reverse reaction between A and B are much larger than the rate constants of input and output of the reaction network, so we can assume quasi-steady-state on species B. Let us denote the approximated species concentration of A as $\tilde{a(t)}$, and denote the quasi-steady state for $\left[B\right]$ as $b^{qss}(t)$.
+
+		That is,\\
+		$0=k_1\tilde{a(t)}-k_{-1}b^{qss}(t)\Rightarrow b^{qss}(t)=\frac{k_1}{k_{-1}}\tilde{a(t)}$\\
+		Also,\\
+		$\frac{d\tilde{a(t)}}{dt}=k_0-(k_1+k_2)\tilde{a(t)}+k_{-1}b^{qss}(t)=k_0-k_2\tilde{a(t)}$
+
 		\item Run a simulation of your reduced model in part (b) to compare with the simulation in part (a). Verify that the simulation of the reduced system is a good approximation to the original at steady state, but not over the initial transient. (Note, you will have to select initial conditions for the reduced system so that the total concentration is in agreement with part (a), and the quasi-steady state condition is satisfied at time t = 0, as in Exercise 2.2.4.)
+
+		The initial condition of this simulation can be calculated by the relationship:\\
+		$a(0)+b(0)=6=\tilde{a(0)}+b^{qss}(0)=(1+\frac{k_1}{k_{-1}})\tilde{a(0)}\Rightarrow \tilde{a(0)}=\frac{6k_{-1}}{k_1+k_{-1}}=\frac{48}{19}$ mM
 	\end{enumerate}
 \end{document}
