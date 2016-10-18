@@ -187,10 +187,10 @@ Complete the following table. Assume mass action kinetics for all reaction mecha
 			\item Verify your result in (ii) by running a simulation of the system from initial conditions (in mM) of ($\left[A\right], \left[B\right], \left[C\right], \left[D\right], \left[E\right], \left[F\right]) = (1, 1, \frac{1}{2} , 0, 0, 0)$. Take rate constants $k_{0} = 0.5 mM/sec, k_{1} = 3/mM/sec, k_{2} = 1/sec, k_{3} = 4/sec, k_{4} = 1/sec, k_{5} = 5/sec$.
 			\item Given the initial conditions and rate constants in part (iii), why would there be no steady state if we take $k_{0} = 5 mM/sec$?
 
-			It's intutive that the steady-state of a system exists if and only if there is a steady-state concentration of any species. Then, according the steady-state concentration derived in part (ii), the steady-state concentration of A:\\
+			It's intuitive that the steady-state concentrations of a system exist if there is a steady-state of the system. Equivalently, if a system doesn't exist steady-state concentrations, the system cannot achieve steady-state. Then, according the steady-state concentration derived in part (ii), the steady-state concentration of A:\\
 			$\left[A\right]_{ss}=\frac{v_{0}}{k_{1}\left[ B\right]_{ss}}=\frac{k_{0}}{k_{1}(b_{0}-\frac{k_{0}}{k_{2}})}$ exists  if and only if $b_{0}-\frac{k_{0}}{k_{2}}>0 \Leftrightarrow b_{0}k_{2}>k_{0}$ \\
 			and here:\\
-			$b_{0}k_{2}=1 \times 1<k_{0}=5$, which is conflict with the sufficient and necessary condition of the steady-state concentration of A, so the system cannot acheive steady-state. 
+			$b_{0}k_{2}=1 \times 1<k_{0}=5$, which is conflict with the sufficient and necessary condition of the steady-state concentration of A, so the system cannot achieve steady-state. 
 		\end{enumerate}
 
 	\end{enumerate}
@@ -198,11 +198,17 @@ Complete the following table. Assume mass action kinetics for all reaction mecha
 \subsection{Problem Set 2.4.8 Rapid equilibrium approximation.}
 	Consider the closed system:\\
 	\\
-	with mass action rate constants as shown. Suppose the rate constants are (in min\textsuperscript{-1}) $k_{1} = 0.05, k_{2} = 0.7, k_{-1} = 0.005, and k_{-2} = 0.4$.
+	with mass action rate constants as shown. Suppose the rate constants are (in min\textsuperscript{-1}) $k_{1} = 0.05, k_{2} = 0.7, k_{-1} = 0.005, $and $ k_{-2} = 0.4$.
 	\begin{enumerate}[a)]
 		\item Construct a differential equation model of the system. Simulate your model with initial conditions (in mM) of A(0) = 1.5, B(0) = 3, C(0) = 2. Plot the transient and steady-state behaviour of the system. You may need to make two plots to capture all of the dynamics (i.e. two different window sizes).
 
-		\item It should be clear from your simulation in part (a) that the system dynamics occur on two different time-scales. This is also apparent in the widely separated rate constants. Use a rapid equilibrium assumption to reduce your description of the system to two differential equations (de- scribing one of the original species and one combined species pool) and two algebraic equations (describing the contents of the combined pool).
+		We can derive a model which consists of following differential equations:
+		\begin{align*}
+			\frac{d\left[A\right]}{dt}=-k_{1}\left[A\right]+k_{1}\left[B\right], \frac{d\left[B\right]}{dt}=k_{1}\left[A\right]-(k_{2}+k_{-1})\left[B\right]+k_{-2}\left[C\right], \frac{d\left[C\right]}{dt}=k_{2}\left[B\right]-k_{-2}\left[C\right]
+		\end{align*}
+		\item It should be clear from your simulation in part (a) that the system dynamics occur on two different time-scales. This is also apparent in the widely separated rate constants. Use a rapid equilibrium assumption to reduce your description of the system to two differential equations (describing one of the original species and one combined species pool) and two algebraic equations (describing the contents of the combined pool).
+
+
 
 		\item Run a simulation of your reduced model in part (b) to compare with the simulation in part (a). Verify that the simulation of the reduced system is in good agreement with the original, except for a short initial transient. (Note, you will have to select initial conditions for the reduced system so that the initial total concentration is in agreement with part (a), and the rapid equilibrium condition is satisfied at time t = 0.)
 	\end{enumerate}
