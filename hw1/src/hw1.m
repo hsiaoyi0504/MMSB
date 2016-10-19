@@ -56,7 +56,7 @@ function hw1()
     title('Transient-state');
     legend('A (original model)','B (original model)','C (original model)', ...
         'A (reduced model)','B (reduced model)','C (reduced model)');
-    saveas(fig,'../img/2.4.8.a.transient.jpg');
+    saveas(fig,'../img/2.4.8.transient.jpg');
     % steady-state
     fig = figure;
     hold on;
@@ -65,8 +65,9 @@ function hw1()
     xlabel('Time (sec)');
     ylabel('Concentration (mM)');
     title('Steady-state');
-    legend('A','B','C');
-    saveas(fig,'../img/2.4.8.a.steady.jpg');
+    legend('A (original model)','B (original model)','C (original model)', ...
+        'A (reduced model)','B (reduced model)','C (reduced model)');
+    saveas(fig,'../img/2.4.8.steady.jpg');
    
     % question 2.4.9 a) and c)
     y0 = [ 6; 0;];
