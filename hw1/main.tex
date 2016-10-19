@@ -34,6 +34,8 @@
 \usepackage{mathtools}
 \usepackage{graphicx}
 \graphicspath{ {img/} }
+\DeclareGraphicsExtensions{.png,.jpg}
+
 \usepackage{pbox}
 
 
@@ -95,7 +97,9 @@ Complete the following table. Assume mass action kinetics for all reaction mecha
 
 \subsection{Problem Set 2.4.7 Network modelling.}
 	\begin{enumerate}[a)]
-		\item Consider the closed reaction network in Figure 2.16 with reaction rates $v_{i}$ as indicated. Suppose that the reaction rates are given by mass action as $v_{1}= k_{1}\left[ A \right]\left[ B \right]$, $v_{2} = k_{2}\left[ D \right]$ and $v_{3} = k_{3}\left[ C \right]$.
+		\item Consider the closed reaction network shown below:\\
+		\includegraphics[scale=0.3]{{2.4.7.a}.jpg}\\
+		with reaction rates $v_{i}$ as indicated. Suppose that the reaction rates are given by mass action as $v_{1}= k_{1}\left[ A \right]\left[ B \right]$, $v_{2} = k_{2}\left[ D \right]$ and $v_{3} = k_{3}\left[ C \right]$.
 		\begin{enumerate}[i)]
 			\item Construct a differential equation model for the network. Use moiety conservations to reduce your model to three differential equations and three algebraic equations.
 
@@ -119,32 +123,38 @@ Complete the following table. Assume mass action kinetics for all reaction mecha
 
 			\item Solve for the steady-state concentrations as functions of the rate constants and the initial concentrations. (Note, because the system is closed, some of the steady-state concentrations are zero.)
 
-			Let us denote by $a_{0}$ and $b_{0}$ the initial concentration. According to the three differential equations derived from i), we can further derive :\\
+			Let us denote by $a_{0}$ , $b_{0}$ and $c_{0}$ the initial concentration. According to the three differential equations derived from i), we can further derive :\\
 			$\frac{d\left[ A \right]}{dt}+\frac{d\left[ C \right]}{dt}+\frac{d\left[ E \right]}{dt}=0\Rightarrow
 			\frac{d(\left[ A \right]+ \left[C \left]+\right[ E \right])}{dt}=0\Rightarrow
-			\left[ A \right]+ \left[C \left]+\right[ E \right]=constant=a_{0}\\
+			\left[ A \right]+ \left[C \left]+\right[ E \right]=constant=a_{0}+c_0+e_0\\
 			\frac{d\left[ A \right]}{dt}+\frac{d\left[ C \right]}{dt}+\frac{d\left[ F \right]}{dt}=0\Rightarrow
 			\frac{d(\left[ A \right]+ \left[C \left]+\right[ F \right])}{dt}=0\Rightarrow
-			\left[ A \right]+ \left[C \left]+\right[ F \right]=constant=a_{0}\\
+			\left[ A \right]+ \left[C \left]+\right[ F \right]=constant=a_{0}+c_0+f_0\\
 			\frac{d\left[ B \right]}{dt}+\frac{d\left[ D \right]}{dt}=0\Rightarrow
 			\frac{d(\left[ B \right]+\left[ D \right])}{dt}=0\Rightarrow
-			\left[ B \right]+\left[ D \right]=constant=b_{0}$\\
+			\left[ B \right]+\left[ D \right]=constant=b_{0}+d_0$\\
 
 			These equations should be hold all the time. Let us denote by $[I]_{ss}$ the steady state concentration of the species I. Then, we can further derive that:\\
-			$\left[ A \right]_{ss}+ \left[C \left]_{ss}+\right[ E \right]_{ss}=\left[C \left]_{ss}+\right[ E \right]_{ss}=a_{0}\\
-			\left[ A \right]_{ss}+ \left[C \left]_{ss}+\right[ F \right]_{ss}=\left[C \left]_{ss}+\right[ F \right]_{ss}=a_{0}$\\
+			$\left[ A \right]_{ss}+ \left[C \left]_{ss}+\right[ E \right]_{ss}=\left[C \left]_{ss}+\right[ E \right]_{ss}=a_0+c_0+e_0\\
+			\left[ A \right]_{ss}+ \left[C \left]_{ss}+\right[ F \right]_{ss}=\left[C \left]_{ss}+\right[ F \right]_{ss}=a_0+c_0+f_0$\\
 			
 			It's because that there is no supply for A, A will be zero eventually. Additionally,
 			$v_{1}=k_{1}\left[ A \right]_{ss}\left[ B \right]_{ss}=0$ at steady state will induce that there is no supply for C and D either, so we can conclude that\\
-			$\left[ C \right]_{ss}=0\Rightarrow\left[ E \right]_{ss}=a_{0}, \left[ F \right]_{ss}=a_{0}\\
-			\left[ D \right]_{ss}=0\Rightarrow\left[ B \right]_{ss}=b_{0}$
+			$\left[ C \right]_{ss}=0\Rightarrow\left[ E \right]_{ss}=a_{0}+c_{0}+e_{0}, \left[ F \right]_{ss}=a_{0}+c_{0}+e_{0}\\
+			\left[ D \right]_{ss}=0\Rightarrow\left[ B \right]_{ss}=b_{0}+d_{0}$
 			
-			by further substituting the concentration at steady state back to the constant condition derived above. In summary, $\left[ A \right]_{ss}=0, \left[ B \right]_{ss}=b_{0}, \left[ C \right]_{ss}=0, \left[ D \right]_{ss}=0, \left[ E \right]_{ss}=a_{0}, \left[ F \right]_{ss}=a_{0}$
+			by further substituting the concentration at steady state back to the constant condition derived above. In summary, $\left[ A \right]_{ss}=0, \left[ B \right]_{ss}=b_{0}+d_{0}, \left[ C \right]_{ss}=0, \left[ D \right]_{ss}=0, \left[ E \right]_{ss}=a_{0}+c_{0}+e_{0}, \left[ F \right]_{ss}=a_{0}+c_{0}+f_0$
 
 			\item Verify your result in part (ii) by running a simulation of the system from initial conditions (in mM) of ($\left[ A\right], \left[B\right], \left[C\right], \left[D\right], \left[E\right], \left[F\right]) = (1, 1, \frac{1}{2} , 0, 0, 0)$. Take rate constants $k_{1} = 3$/mM/sec, $k_{2} = 1$/sec, $k_{3} = 4$/sec.
 
+			The simulation concentration profile can be seen in following figure:\\
+			\includegraphics[scale=0.3]{{2.4.7.a.iii}.jpg}\\
+			As you can see, the steady state concentration of each species are equal to the result of part (ii). That is, $\left[ A \right]_{ss}=0$, $\left[ B \right]_{ss}=b_{0}+d_{0}=1$, $\left[ C \right]_{ss}=0$, $\left[ D \right]_{ss}=0$, $\left[ E \right]_{ss}=a_{0}+c_{0}+e_{0}=1.5$, $\left[ F \right]_{ss}=a_{0}+c_{0}+f_0=1.5$
+
 		\end{enumerate}
-		\item Next consider the open system in Figure 2.17 with reaction rates vi as indicated. Suppose that the reaction rates are given by mass action as $v_{0} = k_{0}, v_{1} = k_{1}\left[A\right]\left[B\right], v_{2} = k_{2}\left[D\right], v_{3} = k_{3}\left[C\right], v_{4} = k_{4}\left[E\right]$, and $v_{5} = k_{5}\left[F\right]$.
+		\item Next consider the open system shown below:\\
+		\includegraphics[scale=0.25]{{2.4.7.b}.jpg}\\
+		with reaction rates vi as indicated. Suppose that the reaction rates are given by mass action as $v_{0} = k_{0}, v_{1} = k_{1}\left[A\right]\left[B\right], v_{2} = k_{2}\left[D\right], v_{3} = k_{3}\left[C\right], v_{4} = k_{4}\left[E\right]$, and $v_{5} = k_{5}\left[F\right]$.
 
 		\begin{enumerate}[i)]
 			\item Construct a differential equation model for the network. Identify any moiety conservations in the network.
@@ -173,31 +183,37 @@ Complete the following table. Assume mass action kinetics for all reaction mecha
 			$\frac{d\left[ A \right]}{dt}+\frac{d\left[ C \right]}{dt}+\frac{d\left[ E \right]}{dt}=v_{0}-v_{4}=v_{0}-k_{4}\left[E\right]_{ss}=0\Rightarrow \left[E\right]_{ss}=\frac{v_{0}}{k_{4}}=\frac{k_{0}}{k_{4}}\\
 			\frac{d\left[ A \right]}{dt}+\frac{d\left[ C \right]}{dt}+\frac{d\left[ F \right]}{dt}=v_{0}-v_{5}=v_{0}-k_{5}\left[F\right]_{ss}=0\Rightarrow \left[F\right]_{ss}=\frac{v_{0}}{k_{5}}=\frac{k_{0}}{k_{5}}\\
 			\frac{d\left[ B \right]}{dt}+\frac{d\left[ D \right]}{dt}=0\Rightarrow \frac{d(\left[ B \right]+\left[ D \right])}{dt}=0\Rightarrow
-			\left[ B \right]+\left[ D \right]=constant=b_{0}=\left[ B \right]_{ss}+\left[ D \right]_{ss}$\\
+			\left[ B \right]+\left[ D \right]=constant=b_{0}+d_0=\left[ B \right]_{ss}+\left[ D \right]_{ss}$\\
 			at steady-state. Also, at steady-state,\\
-
 			$\frac{d\left[ A \right]}{dt}=v_{0}-v_{1}=0\Rightarrow v_{0}=v_{1}\\
 			\frac{d\left[ D \right]}{dt}=v_{1}-v_{2}=0\Rightarrow v_{1}=v_{2}\\
 			\frac{d\left[ C \right]}{dt}=v_{1}-v_{3}=0\Rightarrow v_{1}=v_{3}\\
 			$
 			Then, we can combine these two equation with the rate change of D at steady-state:\\
-			$v_{0}=v_{2}=k_{2}\left[D\right]_{ss} \Rightarrow \left[D\right]_{ss}=\frac{v_{0}}{k_{2}}=\frac{k_{0}}{k_{2}} \Rightarrow \left[ B\right]_{ss}=b_{0}-\left[D\right]_{ss}=b_{0}-\frac{k_{0}}{k_{2}} \Rightarrow v_{0} = v_{1} = k_{1}\left[ A\right]_{ss}\left[B \right]_{ss}\\\Rightarrow \left[ A\right]_{ss}=\frac{v_{0}}{k_{1}\left[ B\right]_{ss}}=\frac{k_{0}}{k_{1}(b_{0}-\frac{k_{0}}{k_{2}})}\\
-			v_{0}=v_{3}=k_{3}\left[C\right]_{ss}\Rightarrow \left[C\right]_{ss}=\frac{v_{0}}{k_{3}}=\frac{k_{0}}{k_{3}}$
+			$v_{0}=v_{2}=k_{2}\left[D\right]_{ss} \Rightarrow \left[D\right]_{ss}=\frac{v_{0}}{k_{2}}=\frac{k_{0}}{k_{2}} \Rightarrow \left[ B\right]_{ss}=b_{0}+d_0-\left[D\right]_{ss}=b_{0}+d_0-\frac{k_{0}}{k_{2}} \Rightarrow \\v_{0} = v_{1} = k_{1}\left[ A\right]_{ss}\left[B \right]_{ss}\Rightarrow \left[ A\right]_{ss}=\frac{v_{0}}{k_{1}\left[ B\right]_{ss}}=\frac{k_{0}}{k_{1}(b_{0}+d_0-\frac{k_{0}}{k_{2}})}\\
+			v_{0}=v_{3}=k_{3}\left[C\right]_{ss}\Rightarrow \left[C\right]_{ss}=\frac{v_{0}}{k_{3}}=\frac{k_{0}}{k_{3}}$ \\
+			In summary, $\left[ A\right]_{ss}=\frac{k_{0}}{k_{1}(b_{0}+d_0-\frac{k_{0}}{k_{2}})}$, $\left[ B \right]_{ss}=b_{0}+d_0-\frac{k_{0}}{k_{2}}$, $\left[ C \right]_{ss}=\frac{k_{0}}{k_{3}}$, $\left[D\right]_{ss}=\frac{k_{0}}{k_{2}}$, $\left[ E \right]_{ss}=\frac{k_{0}}{k_{4}}$, $\left[ F \right]_{ss}=\frac{k_{0}}{k_{5}}$
 
 			\item Verify your result in (ii) by running a simulation of the system from initial conditions (in mM) of ($\left[A\right], \left[B\right], \left[C\right], \left[D\right], \left[E\right], \left[F\right]) = (1, 1, \frac{1}{2} , 0, 0, 0)$. Take rate constants $k_{0} = 0.5 mM/sec, k_{1} = 3/mM/sec, k_{2} = 1/sec, k_{3} = 4/sec, k_{4} = 1/sec, k_{5} = 5/sec$.
+
+			The simulation concentration profile can be seen on the top of the next page. As you can see, the steady state concentration of each species are equal to the result of part (ii). That is, $\left[ A\right]_{ss}=\frac{k_{0}}{k_{1}(b_{0}+d_0-\frac{k_{0}}{k_{2}})}=\frac{0.5}{3\times(1-\frac{0.5}{1})}=\frac{1}{3}$, $\left[ B \right]_{ss}=b_{0}+d_0-\frac{k_{0}}{k_{2}}=0.5$, $\left[ C \right]_{ss}=\frac{k_{0}}{k_{3}}=\frac{0.5}{4}=0.125$, $\left[D\right]_{ss}=\frac{k_{0}}{k_{2}}=0.5$, $\left[ E \right]_{ss}=\frac{k_{0}}{k_{4}}=0.5$, $\left[ F \right]_{ss}=\frac{k_{0}}{k_{5}}=0.1$\\
+			\includegraphics[scale=0.25]{{2.4.7.b.iii}.jpg}
+
 			\item Given the initial conditions and rate constants in part (iii), why would there be no steady state if we take $k_{0} = 5 mM/sec$?
 
 			It's intuitive that the steady-state concentrations of a system exist if there is a steady-state of the system. Equivalently, if a system doesn't exist steady-state concentrations, the system cannot achieve steady-state. Then, according the steady-state concentration derived in part (ii), the steady-state concentration of A:\\
-			$\left[A\right]_{ss}=\frac{v_{0}}{k_{1}\left[ B\right]_{ss}}=\frac{k_{0}}{k_{1}(b_{0}-\frac{k_{0}}{k_{2}})}$ exists  if and only if $b_{0}-\frac{k_{0}}{k_{2}}>0 \Leftrightarrow b_{0}k_{2}>k_{0}$ \\
-			and here:\\
-			$b_{0}k_{2}=1 \times 1<k_{0}=5$, which is conflict with the sufficient and necessary condition of the steady-state concentration of A, so the system cannot achieve steady-state. 
+			$\left[A\right]_{ss}=\frac{v_{0}}{k_{1}\left[ B\right]_{ss}}=\frac{k_{0}}{k_{1}(b_{0}-\frac{k_{0}}{k_{2}})}$ exists  if and only if $b_{0}-\frac{k_{0}}{k_{2}}>0 \Leftrightarrow b_{0}k_{2}>k_{0}$\\
+			And here:
+			$b_{0}k_{2}=1 \times 1<k_{0}=5$\\
+			which is conflict with the sufficient and necessary condition of the steady-state concentration of A, so the system cannot achieve steady-state. Here, I also simulate the concentration profile. As you can see, the $\left[A\right]$ never reach a steady state.\\
+			\includegraphics[scale=0.3]{{2.4.7.b.iv}.jpg}
 		\end{enumerate}
 
 	\end{enumerate}
 
 \subsection{Problem Set 2.4.8 Rapid equilibrium approximation.}
 	Consider the closed system:\\
-	\\
+	\includegraphics[scale=0.5]{{2.4.8}.jpg}\\
 	with mass action rate constants as shown. Suppose the rate constants are (in min\textsuperscript{-1}) $k_{1} = 0.05, k_{2} = 0.7, k_{-1} = 0.005, $and $ k_{-2} = 0.4$.
 	\begin{enumerate}[a)]
 		\item Construct a differential equation model of the system. Simulate your model with initial conditions (in mM) of A(0) = 1.5, B(0) = 3, C(0) = 2. Plot the transient and steady-state behaviour of the system. You may need to make two plots to capture all of the dynamics (i.e. two different window sizes).
@@ -206,6 +222,9 @@ Complete the following table. Assume mass action kinetics for all reaction mecha
 		\begin{align*}
 			\frac{d\left[A\right]}{dt}=-k_{1}\left[A\right]+k_{-1}\left[B\right], \frac{d\left[B\right]}{dt}=k_{1}\left[A\right]-(k_{2}+k_{-1})\left[B\right]+k_{-2}\left[C\right], \frac{d\left[C\right]}{dt}=k_{2}\left[B\right]-k_{-2}\left[C\right]
 		\end{align*}
+		The simulation result are shown below.\\
+		\includegraphics[scale=0.25]{{2.4.8.a.transient}.jpg}
+		\includegraphics[scale=0.25]{{2.4.8.a.steady}.jpg}
 
 		\item It should be clear from your simulation in part (a) that the system dynamics occur on two different time-scales. This is also apparent in the widely separated rate constants. Use a rapid equilibrium assumption to reduce your description of the system to two differential equations (describing one of the original species and one combined species pool) and two algebraic equations (describing the contents of the combined pool).
 
@@ -230,7 +249,7 @@ Complete the following table. Assume mass action kinetics for all reaction mecha
 	\end{enumerate}
 \subsection{Problem Set 2.4.9 Quasi-steady-state approximation.}
 	Consider the reaction network:\\
-	\\
+	\includegraphics[scale=0.5]{{2.4.9}.jpg}\\
 	Suppose the mass action rate constants are (in min\textsuperscript{-1}) $k_{0}=1, k_{1} = 11, k_{-1} = 8,$ and $k_{2} = 0.2$.
 	\begin{enumerate}[a)]
 		\item Construct a differential equation model of the system. Simulate your model with initial conditions A(0) = 6 mM, B(0) = 0 mM. Plot the transient and steady-state behaviour of the system. You may need to make two plots to capture all of the dynamics (i.e. two different window sizes).
@@ -239,6 +258,7 @@ Complete the following table. Assume mass action kinetics for all reaction mecha
 		\begin{align*}
 			\frac{d\left[A\right]}{dt}&=k_0-(k_1+k_2)\left[A\right]+k_{-1}\left[B\right],& \frac{d\left[B\right]}{dt}&=k_{1}\left[A\right]-k_{-1}\left[B\right]&
 		\end{align*}
+		The simulation result are shown in next page.
 
 		\item It should be clear from your simulation in part (a) that the system dynamics occur on two different time-scales. This is also apparent in the widely separated rate constants. Use a quasi-steady-state assumption to reduce your description of the system by replacing a differential equation with an algebraic equation.
 
