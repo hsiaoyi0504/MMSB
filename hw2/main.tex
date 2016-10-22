@@ -23,8 +23,8 @@
 \usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
 \usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
 \usepackage[english]{babel} % English language/hyphenation
-\usepackage{amsmath,amsfonts,amsthm} % Math packages
 \usepackage{enumerate}
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
 \usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
 \usepackage{sectsty} % Allows customizing section commands
 \allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
@@ -63,7 +63,7 @@
 \normalfont \normalsize 
 \textsc{National Taiwan University, \\ Graduate Institute of Biomedical Engineering and Bioinformatics} \\ [25pt] % Your university, school and/or department name(s)
 \horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
-\huge BEBI5009:\\Mathematical Modeling of System Biology \\ Homework 1 \\ % The assignment title
+\huge BEBI5009:\\Mathematical Modeling of System Biology \\ Homework 2 \\ % The assignment title
 \horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
 }
 
@@ -76,14 +76,54 @@
 \maketitle % Print the title
 
 \newpage
-\section{question A}
+\section{3.7.5 Michaelis-Menten kinetics:first-order approximation.}
+	Consider the reaction chain
+	\begin{gather*}
+		\xrightarrow{v_0} S_1 \xrightarrow{v_1} S_2 \xrightarrow{v_2} S_3 \xrightarrow{v_3} 
+	\end{gather*}
+	in which the $v_i$ are labels for the reaction rates (not mass-action constants). Take the rate $v_0$ as fixed and presume the other reactions follow Michaelis-Menten kinetics, with
+	\begin{gather*}
+		v_i=\frac{V^i_{max}s_i}{K_Mi+s_i},
+	\end{gather*}
+	where $s_i=[S_i]$. Take parameter values (in mM/min) $v_0=2$, $V^1_{max} = 9$, $V^2_{max}=12$, $V^3_{max}=15$;(in mM) $K_{M1} = 1$, $K_{M2} = 0.4$, $K_{M3} = 3$.
 	\begin{enumerate}[a)]
-		\item example q1
-		\item example q2
+		\item Simulate the system from initial conditions (in mM) ($s_1$, $s_2$, $s_3$) = (0.3, 0.2, 0.1). Repeat with initial condition ($s_1$, $s_2$, $s_3$) = (6, 4, 4).
+
+
+		\item Generate an approximate model in which the rates of reactions 1, 2, and 3 follow first-order mass-action kinetics (i.e. $v_i = k_is_i$, for i = 1, 2, 3). Choose values for the rate constants ki that give a good approximation to the original nonlinear model. Explain your reasoning. (Hint: Exercise 3.1.2(b) provides one viable approach.)
+
+
+		\item Simulate your simpler (mass-action based) model from the sets of initial conditions in part (a). Comment on the fit. If the approximation is better in one case than the other, explain why.
+
+
 	\end{enumerate}
-\section{question B}
+\section{3.7.8 Allosteric activation}
+	Consider an allosteric activation scheme in which an allosteric activator must be bound before an enzyme can bind substrate. This is called compulsory activation. The reaction scheme resembles a two-substrate reaction, but the enzyme-activator complex stays intact after the product dissociates:
+	\begin{gather*}
+		R + E \xrightleftharpoons[k_{-1}]{k_1} ER\\
+		ER + S \xrightleftharpoons[k_{-2}]{k_2} ERS \xrightarrow{k_3} P + ER
+	\end{gather*}
+	,where R is the allosteric activator (regulator).
 	\begin{enumerate}[a)]
-		\item example q1
-		\item example q2
+		\item  Apply a quasi-steady-state assumption to the two complexes ER and ERS (and use enzyme conservation) to verify that the rate law takes the form
+		\begin{gather*}
+			v=\frac{srk_3e_T}{r\frac{k_{-2}+k_3}{k_2}+\frac{k_{-1}(k_{-2}+k_3)}{k_1k_2}+sr}=\frac{V_{max}sr}{K_1r+K_2+rs}.
+		\end{gather*}
+		where r is the regulator concentration and s is the substrate concentration
+
+		\item Next, consider the case in which catalysis can only occur after n regulator molecules have bound. Assuming the the binding involves strong cooperativity, we can approximate the regulator-binding events by:
+		\begin{gather*}
+			nR + E \xrightleftharpoons[k_{-1}]{k_1} ER_n
+		\end{gather*}
+		Verify that in this case the rate law takes the form
+		\begin{gather*}
+			v=\frac{V_{max}sr^n}{K_1r^n+K_2+r^ns}.
+		\end{gather*}
+
+		\item  Confirm that when regulator and substrate are at very low concentration, the rate law in part (b) can be approximated as
+		\begin{gather*}
+			v=\frac{V_{max}}{K_2}sr^n.
+		\end{gather*}
+
 	\end{enumerate}
 \end{document}
