@@ -83,15 +83,35 @@
 	\end{gather*}
 	in which the $v_i$ are labels for the reaction rates (not mass-action constants). Take the rate $v_0$ as fixed and presume the other reactions follow Michaelis-Menten kinetics, with
 	\begin{gather*}
-		v_i=\frac{V^i_{max}s_i}{K_Mi+s_i},
+		v_i=\frac{V^i_{max}s_i}{K_{Mi}+s_i},
 	\end{gather*}
 	where $s_i=[S_i]$. Take parameter values (in mM/min) $v_0=2$, $V^1_{max} = 9$, $V^2_{max}=12$, $V^3_{max}=15$;(in mM) $K_{M1} = 1$, $K_{M2} = 0.4$, $K_{M3} = 3$.
 	\begin{enumerate}[a)]
 		\item Simulate the system from initial conditions (in mM) ($s_1$, $s_2$, $s_3$) = (0.3, 0.2, 0.1). Repeat with initial condition ($s_1$, $s_2$, $s_3$) = (6, 4, 4).
+		
+		According to the question, we can easily derive following equations:
+		\begin{gather*}
+			\frac{dS_i}{dt}=v_i-v_{i-1}=
+			\begin{cases}
+				\frac{V^i_{max}s_i}{K_Mi+s_i}-v_0  \quad if \quad i = 1\\
+				\frac{V^i_{max}s_i}{K_Mi+s_i}-\frac{V^{i-1}_{max}s_{i-1}}{K_{Mi-1}+s_{i-1}} \quad if \quad i = 2,3\\
+			\end{cases}
+		\end{gather*}
+		Thus, we can simulate the system with these equations. The simulation result are shown below.
+		\begin{enumerate}[i)]
+			\item Simulation result with initial condition (in mM) ($s_1$, $s_2$, $s_3$) = (0.3, 0.2, 0.1).
 
+			\item Simulation result with initial condition (in mM) ($s_1$, $s_2$, $s_3$) = (6, 4, 4).
 
-		\item Generate an approximate model in which the rates of reactions 1, 2, and 3 follow first-order mass-action kinetics (i.e. $v_i = k_is_i$, for i = 1, 2, 3). Choose values for the rate constants ki that give a good approximation to the original nonlinear model. Explain your reasoning. (Hint: Exercise 3.1.2(b) provides one viable approach.)
+		\end{enumerate}
 
+		\item Generate an approximate model in which the rates of reactions 1, 2, and 3 follow first-order mass-action kinetics (i.e. $v_i = k_is_i$, for i = 1, 2, 3). Choose values for the rate constants $k_i$ that give a good approximation to the original nonlinear model. Explain your reasoning. (Hint: Exercise 3.1.2(b) provides one viable approach.)
+
+		For $s$ is small, the reaction rate of Michaelis-Menten kinetics can be approximated:
+		\begin{gather*}
+			v_i=\frac{V^i_{max}s_i}{K_{Mi}+s_i}\approx \frac{V^i_{max}s_i}{K_{Mi}}
+		\end{gather*}
+		Then, it is intuitive to choose rate constants $k_i=\frac{V^i_{max}}{K_{Mi}}$
 
 		\item Simulate your simpler (mass-action based) model from the sets of initial conditions in part (a). Comment on the fit. If the approximation is better in one case than the other, explain why.
 
@@ -111,7 +131,7 @@
 		\end{gather*}
 		where r is the regulator concentration and s is the substrate concentration
 
-		\item Next, consider the case in which catalysis can only occur after n regulator molecules have bound. Assuming the the binding involves strong cooperativity, we can approximate the regulator-binding events by:
+		\item Next, consider the case in which catalysis can only occur after $n$ regulator molecules have bound. Assuming the the binding involves strong cooperativity, we can approximate the regulator-binding events by:
 		\begin{gather*}
 			nR + E \xrightleftharpoons[k_{-1}]{k_1} ER_n
 		\end{gather*}
