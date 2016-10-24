@@ -99,10 +99,10 @@
 		\end{gather*}
 		Thus, we can simulate the system with these equations. The simulation result are shown below.
 		\begin{enumerate}[i)]
-			\item Simulation result with initial condition (in mM) ($s_1$, $s_2$, $s_3$) = (0.3, 0.2, 0.1).
-
-			\item Simulation result with initial condition (in mM) ($s_1$, $s_2$, $s_3$) = (6, 4, 4).
-
+			\item Simulation result with initial condition (in mM) ($s_1$, $s_2$, $s_3$) = (0.3, 0.2, 0.1).\\
+			\includegraphics[scale=0.3]{{3.7.5.a.1}.jpg}
+			\item Simulation result with initial condition (in mM) ($s_1$, $s_2$, $s_3$) = (6, 4, 4).\\
+			\includegraphics[scale=0.3]{{3.7.5.a.2}.jpg}
 		\end{enumerate}
 
 		\item Generate an approximate model in which the rates of reactions 1, 2, and 3 follow first-order mass-action kinetics (i.e. $v_i = k_is_i$, for i = 1, 2, 3). Choose values for the rate constants $k_i$ that give a good approximation to the original nonlinear model. Explain your reasoning. (Hint: Exercise 3.1.2(b) provides one viable approach.)
@@ -115,6 +115,15 @@
 
 		\item Simulate your simpler (mass-action based) model from the sets of initial conditions in part (a). Comment on the fit. If the approximation is better in one case than the other, explain why.
 
+		\begin{enumerate}[i)]
+			\item Simulation result with initial condition (in mM) ($s_1$, $s_2$, $s_3$) = (0.3, 0.2, 0.1).\\
+			\includegraphics[scale=0.3]{{3.7.5.c.1}.jpg}
+			\item Simulation result with initial condition (in mM) ($s_1$, $s_2$, $s_3$) = (6, 4, 4).\\
+			\includegraphics[scale=0.3]{{3.7.5.c.2}.jpg}\\
+			Result at closer scale:\\
+			\includegraphics[scale=0.3]{{3.7.5.c.2_s}.jpg}
+		\end{enumerate}
+		The simpler model fits better with initial condition (in mM) ($s_1$, $s_2$, $s_3$) = (0.3, 0.2, 0.1) than ($s_1$, $s_2$, $s_3$) = (6, 4, 4). It's because of the underlining assumption of simpler model that $s$ should be small. That is, $s_i$ with initial condition (in mM) ($s_1$, $s_2$, $s_3$) = (0.3, 0.2, 0.1) is small enough. However, $s_i$ with initial condition (in mM) ($s_1$, $s_2$, $s_3$) = (6, 4, 4) is not small enough.
 
 	\end{enumerate}
 \section{3.7.8 Allosteric activation}
