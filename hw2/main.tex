@@ -34,7 +34,7 @@
 \usepackage{graphicx}
 \graphicspath{ {img/} }
 \DeclareGraphicsExtensions{.png,.jpg}
-
+\usepackage{color}
 \usepackage{pbox}
 
 \usepackage{fancyhdr} % Custom headers and footers
@@ -121,15 +121,44 @@
 	Consider an allosteric activation scheme in which an allosteric activator must be bound before an enzyme can bind substrate. This is called compulsory activation. The reaction scheme resembles a two-substrate reaction, but the enzyme-activator complex stays intact after the product dissociates:
 	\begin{gather*}
 		R + E \xrightleftharpoons[k_{-1}]{k_1} ER\\
-		ER + S \xrightleftharpoons[k_{-2}]{k_2} ERS \xrightarrow{k_3} P + ER
+		ER + S \xrightleftharpoons[k_{-2}]{k_2} ERS \xrightarrow{k_3} P + ER,
 	\end{gather*}
-	,where R is the allosteric activator (regulator).
+	where R is the allosteric activator (regulator).
 	\begin{enumerate}[a)]
 		\item  Apply a quasi-steady-state assumption to the two complexes ER and ERS (and use enzyme conservation) to verify that the rate law takes the form
 		\begin{gather*}
-			v=\frac{srk_3e_T}{r\frac{k_{-2}+k_3}{k_2}+\frac{k_{-1}(k_{-2}+k_3)}{k_1k_2}+sr}=\frac{V_{max}sr}{K_1r+K_2+rs}.
+			v=\frac{srk_3e_T}{r\frac{k_{-2}+k_3}{k_2}+\frac{k_{-1}(k_{-2}+k_3)}{k_1k_2}+sr}=\frac{V_{max}sr}{K_1r+K_2+rs},
 		\end{gather*}
 		where r is the regulator concentration and s is the substrate concentration
+
+		First, we can write down the differential equations for all species:
+		\begin{align*}
+			&\frac{d[R]}{dt}=-k_1[R][E]+k_{-1}[ER]\\
+			&\frac{d[E]}{dt}=-k_1[R][E]+k_{-1}[ER]\\
+			&\frac{d[ER]}{dt}=k_1[R][E]-k_{-1}[ER]-k_2[ER][S]+k_{-2}[ERS]+k_3[ERS]\\
+			&\frac{d[S]}{dt}=-k_2[ER][S]+k_{-2}[ERS]\\
+			&\frac{d[ERS]}{dt}=k_2[ER][S]-k_{-2}[ERS]-k_3[ERS]\\
+			&\frac{d[P]}{dt}=k_3[ERS]=v
+		\end{align*}
+		By applying a quasi-steady-state assumption to the two complexes ER and ESR, we know that:
+		\begin{align*}
+			&0=k_2[ER]_{ss}[S]-k_{-2}[ERS]_{ss}-k_3[ERS]_{ss}\\
+			\Rightarrow &[ER]_{ss}=\frac{k_{-2}+k_3}{k_2[S]}[ERS]_{ss}\\
+			&0=k_1[R][E]-k_{-1}[ER]_{ss}-k_2[ER]_{ss}[S]+k_{-2}[ERS]_{ss}+k_3[ERS]_{ss}\\
+			\Rightarrow&0=k_1[R](e_T-\frac{k_{-2}+k_3}{k_2[S]}[ERS]_{ss}-[ERS]_{ss})-k_{-1}\frac{k_{-2}+k_3}{k_2[S]}[ERS]_{ss}-k_2\frac{k_{-2}+k_3}{k_2[S]}[ERS]_{ss}[S]\\
+			&+k_{-2}[ERS]_{ss}+k_3[ERS]_{ss}\\
+			\Rightarrow& (k_1[R]\frac{k_{-2}+k_3}{k_2[S]}+k_1[R]+k_{-1}\frac{k_{-2}+k_3}{k_2[S]})[ERS]_{ss}=k_1[R]e_T\\
+			\Rightarrow& [ERS]_{ss}= \frac{e_T[R][S]}{[R]\frac{k_{-2}+k_3}{k_2}+[R][S]+\frac{k_{-1}(k_{-2}+k_3)}{k_1k_2}} = \frac{e_T[S][R]}{[R]\frac{k_{-2}+k_3}{k_2}+\frac{k_{-1}(k_{-2}+k_3)}{k_1k_2}+[R][S]}\\
+			\Rightarrow& v=k_3[ERS]=\frac{k_3e_T[S][R]}{\frac{k_{-2}+k_3}{k_2}[R]+\frac{k_{-1}(k_{-2}+k_3)}{k_1k_2}+[R][S]}
+		\end{align*}
+		where $e_t$ is from the conservation of enzyme:
+		\begin{align*}
+			e_T=[E]+[ER]_{ss}+[ERS]_{ss}
+		\end{align*}
+		Further substitute the equation with $K_1=\frac{k_{-2}+k_3}{k_2}$, $K_2=\frac{k_{-1}(k_{-2}+k_3)}{k_1k_2}$, $V_{max}=k_3e_T$. Then, we get the same result which is specified in the question. That is,
+		\begin{align*}
+			v=\frac{k_3e_T[S][R]}{\frac{k_{-2}+k_3}{k_2}[R]+\frac{k_{-1}(k_{-2}+k_3)}{k_1k_2}+[R][S]}=\frac{V_{max}[S][R]}{K_1[R]+K2+[R][S]}
+		\end{align*}
 
 		\item Next, consider the case in which catalysis can only occur after $n$ regulator molecules have bound. Assuming the the binding involves strong cooperativity, we can approximate the regulator-binding events by:
 		\begin{gather*}
@@ -140,10 +169,31 @@
 			v=\frac{V_{max}sr^n}{K_1r^n+K_2+r^ns}.
 		\end{gather*}
 
+		The procedures are really similar to those in part (a).
+		First, we can write down the differential equations for all species:
+		\begin{align*}
+			&\frac{d[R]}{dt}=-k_1[R]^n[E]+k_{-1}[ER_n]\\
+			&\frac{d[E]}{dt}=-k_1[R]^n[E]+k_{-1}[ER_n]\\
+			&\frac{d[ER_n]}{dt}=k_1[R]^n[E]-k_{-1}[ER_n]-k_2[ER_n][S]+k_{-2}[ER_nS]+k_3[ER_nS]\\
+			&\frac{d[S]}{dt}=-k_2[ER_n][S]+k_{-2}[ER_nS]\\
+			&\frac{d[ER_nS]}{dt}=k_2[ER_n][S]-k_{-2}[ER_nS]-k_3[ER_nS]\\
+			&\frac{d[P]}{dt}=k_3[ER_nS]=v
+		\end{align*}
+		If we use $[R']=[R]^n$, $[ER']=[ER_n]$, $[ERS']=[ER_nS]$ to represent the equations above, we will get the same set equations with $[R']$, $[ER']$, and $[ERS']$ replacing $[R]$, $[ER]$, and $[ERS]$, respectively. So, we can similarly conclude that we get the same result which is specified in the question. That is,
+		\begin{align*}
+			v=\frac{k_3e_T[S][R']}{\frac{k_{-2}+k_3}{k_2}[R']+\frac{k_{-1}(k_{-2}+k_3)}{k_1k_2}+[R'][S]}=\frac{V_{max}[S][R']}{K_1[R']+K2+[R'][S]}=\frac{V_{max}[S][R]^n}{K_1[R]^n+K2+[R]^n[S]}
+		\end{align*}
+
 		\item  Confirm that when regulator and substrate are at very low concentration, the rate law in part (b) can be approximated as
 		\begin{gather*}
 			v=\frac{V_{max}}{K_2}sr^n.
 		\end{gather*}
+
+		When regulator and substrate are at very low concentration, $K_2\gg K_1r^n$ and $K_2\gg r^ns$, so
+		\begin{gather*}
+			v=\frac{V_{max}sr^n}{K_1r^n+K2+r^ns}\approx\frac{V_{max}}{K_2}sr^n
+		\end{gather*}
+		Then, we have already confirmed the argument.
 
 	\end{enumerate}
 \end{document}
