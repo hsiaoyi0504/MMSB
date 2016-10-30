@@ -1,0 +1,283 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Short Sectioned Assignment
+% LaTeX Template
+% Version 1.0 (5/5/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{enumerate}
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+\sectionfont{\raggedright}
+\usepackage[english]{babel}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\graphicspath{ {img/} }
+\DeclareGraphicsExtensions{.png,.jpg}
+\usepackage{color}
+\usepackage{pbox}
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{National Taiwan University, \\ Graduate Institute of Biomedical Engineering and Bioinformatics} \\ [25pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge BEBI5009:\\Mathematical Modeling of System Biology \\ Homework 3 \\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{Yi Hsiao} % Your name
+
+\date{\normalsize\today} % Today's date or a custom date
+
+\begin{document}
+
+\maketitle % Print the title
+
+\newpage
+\section{4.8.6 Global dynamics from local stability analysis.}
+	\begin{enumerate}[a)]
+		\item Consider the chemical reaction network with mass-action kinetics:
+		\begin{gather*}
+			A + X \xrightarrow{k_1} 2X \\
+			X + X \xrightarrow{k_2} Y \\
+			Y \xrightarrow{k_3} B
+		\end{gather*}
+		\begin{enumerate}[i)]
+			\item Write a differential equation model describing the concentrations of X and Y
+			\begin{gather*}
+				\frac{d[X]}{dt} = -k_1[A][X]+2k_1[A][X]-k_2[X]^2=k_1[A][X]-k_2[X]^2\\
+				\frac{d[Y]}{dt} = k_2[X]^2-k_3[Y]
+			\end{gather*}
+
+			\item Verify that the system has two steady states.
+
+			At steady-state,
+			\begin{align*}
+				&\frac{d[X]_{ss}}{dt}=0 \Rightarrow k_1[A]_{ss}[X]_{ss}-k_2[X]^2_{ss}=0 \Rightarrow [X]_{ss}(k_1[A]_{ss}-k_2[X]_{ss})=0 \\
+				&\Rightarrow [X]_{ss}=0 \quad or \quad [X]_{ss}=\frac{k_1}{k_2}[A]
+			\end{align*}
+			At the same time,
+			\begin{align*}
+				&\frac{d[Y]_{ss}}{dt}=0 \Rightarrow k_2[X]^2_{ss}-k_3[Y]_{ss}=0 \Rightarrow [Y]_{ss}=\frac{k_2}{k_3}[X]^2_{ss}
+			\end{align*}
+			Then, we can conclude that there are two steady-state:
+			\begin{align*}
+				([X]_{ss},[Y]_{ss})=(0,0) \quad or \quad (\frac{k_1}{k_2}[A],\frac{k^2_1}{k_2k_3}[A]^2)
+			\end{align*}
+			\item Determine the system Jacobian at the steady states and characterize the local behavior of the system near these points
+
+			Let us denote the concentrations of species [X] as $x$ and [Y] as $y$. Also, Let us denote the equations derived in (a) by $\frac{d[X]}{dt}=f(x,y)$ and $\frac{d[Y]}{dt}=g(x,y)$. Then,
+			\begin{align*}
+				J =
+				\begin{bmatrix}
+					\frac{\partial f(x,y)}{\partial x} &  \frac{\partial f(x,y)}{\partial y}\\
+					\frac{\partial g(x,y)}{\partial x} &  \frac{\partial g(x,y)}{\partial y}
+				\end{bmatrix}
+				=
+				\begin{bmatrix}
+					k_1[A]-2k_2x & 0\\
+					2k_2x &  -k_3
+				\end{bmatrix}
+			\end{align*}
+			When the system is at steady-state that $([X]_{ss},[Y]_{ss})=(0,0)$:
+			\begin{align*}
+				J =
+				\begin{bmatrix}
+					k_1[A] & 0\\
+					0 &  -k_3
+				\end{bmatrix}
+			\end{align*}
+			Eigen values of this Jacobian matrix are $k_1[A]$ and $-k_3$. Since one of is postive and the other is negative, the steady-state here is a saddle point. When the system is at steady-state that $([X]_{ss},[Y]_{ss})=(\frac{k_1}{k_2}[A],\frac{k^2_1}{k_2k_3}[A]^2)$:
+			\begin{align*}
+				J =
+				\begin{bmatrix}
+					-k1[A] & 0\\
+					2k_1[A] &  -k_3
+				\end{bmatrix}
+			\end{align*}
+			Eigen values of this Jacobian matrix are $-k_1[A]$ and $-k_3$. Since both eigen value of Jacobian matrix are negative, the steady-state here is a stable node.
+
+			\item By referring to the network, provide an intuitive description of the system behaviour starting from any initial condition for which [X] = 0.
+
+			Since the system is without X, the only reaction will happen in this system is $Y\rightarrow B$. The reaction will consume Y until that there is no Y any more.
+
+			\item Sketch a phase portrait for the system that is consistent with your conclusions from (iii) and (iv).
+
+
+
+		\end{enumerate}
+		\item Repeat for the system
+		\begin{gather*}
+			A + X \xrightarrow{k_1} 2X \\
+			X + Y \xrightarrow{k_2} 2Y \\
+			Y \xrightarrow{k_3} B
+		\end{gather*}
+		In this case, you'll find that the non-zero steady-state is a center: it is surrounded by concentric periodic trajectories.
+		\begin{enumerate}[i)]
+			\item
+			\begin{gather*}
+				\frac{d[X]}{dt} = -k_1[A][X]+2k_1[A][X]-k_2[X][Y]=k_1[A][X]-k_2[X][Y]\\
+				\frac{d[Y]}{dt} = -k_2[X][Y]+2k_2[X][Y]-k_3[Y] = k_2[X][Y]-k_3[Y]
+			\end{gather*}
+
+			\item
+			At steady-state,
+			\begin{align*}
+				&\frac{d[X]_{ss}}{dt}=0 \Rightarrow k_1[A]_{ss}[X]_{ss}-k_2[X]_{ss}[Y]_{ss}=0 \Rightarrow [X]_{ss}(k_1[A]_{ss}-k_2[Y]_{ss})=0 \\
+				&\Rightarrow [X]_{ss}=0 \quad or \quad [Y]_{ss}=\frac{k_1}{k_2}[A]\\
+				&\frac{d[Y]_{ss}}{dt}=0 \Rightarrow k_2[X]_{ss}[Y]_{ss}-k_3[Y]_{ss}=0 \Rightarrow [Y]_{ss}(k_2[X]_{ss}-k_3)=0 \\
+				&\Rightarrow [Y]_[ss] = 0 \quad or [X]_{ss}=\frac{k_3}{k_2}
+			\end{align*}
+			Then, we can conclude that there are two steady-state:
+			\begin{align*}
+				([X]_{ss},[Y]_{ss})=(0,0) \quad or \quad (\frac{k_3}{k_2},\frac{k_1}{k_2}[A])
+			\end{align*}
+
+			\item
+			Let us denote the concentrations of species [X] as $x$ and [Y] as $y$. Also, Let us denote the equations derived in (a) by $\frac{d[X]}{dt}=f(x,y)$ and $\frac{d[Y]}{dt}=g(x,y)$. Then,
+			\begin{align*}
+				J =
+				\begin{bmatrix}
+					\frac{\partial f(x,y)}{\partial x} &  \frac{\partial f(x,y)}{\partial y}\\
+					\frac{\partial g(x,y)}{\partial x} &  \frac{\partial g(x,y)}{\partial y}
+				\end{bmatrix}
+				=
+				\begin{bmatrix}
+					k_1[A]-k_2y & -k_2x\\
+					k_2y &  k_2x-k_3
+				\end{bmatrix}
+			\end{align*}
+			When the system is at steady-state that $([X]_{ss},[Y]_{ss})=(0,0)$:
+			\begin{align*}
+				J =
+				\begin{bmatrix}
+					k_1[A] & 0\\
+					0 &  -k_3
+				\end{bmatrix}
+			\end{align*}
+			Eigen values of this Jacobian matrix are $k_1[A]$ and $-k_3$. Since one of is postive and the other is negative, the steady-state here is a saddle point. When the system is at steady-state that $([X]_{ss},[Y]_{ss})=(\frac{k_3}{k_2},\frac{k_1}{k_2}[A])$:
+			\begin{align*}
+				J =
+				\begin{bmatrix}
+					0 & -k_3\\
+					k_1[A] &  0
+				\end{bmatrix}
+			\end{align*}
+			Eigen values of this Jacobian matrix are roots of $\lambda^2=-k_1k_3[A]$. Since both eigen value of Jacobian matrix don't have zero real parts, the steady-state here is a center, which has periodic trajectories.
+
+			\item
+
+			The situation is the same as counterpart of part (a). Since the system is without X, the only reaction will happen in this system is $Y\rightarrow B$. The reaction will consume Y until that there is no Y any more.
+
+			\item
+		\end{enumerate}
+	\end{enumerate}
+
+\section{4.8.8 Linearization.}
+	Consider the simple reaction system $\rightarrow S \rightarrow$, where the reaction rates are
+	\begin{gather*}
+			production: V_0 \quad \quad \quad consumption: \frac{V_{max}[S]}{K_M+[S]}
+	\end{gather*} 
+	\begin{enumerate}[a)]
+		\item Write the differential equation that describes the dynamics in s = [S]. Find the steady state. Next, approximate the original system by linearizing the dynamics around the steady state. This approximation takes the form of a linear differential equation in the new variable $x(t) = s(t)-s^{ss}$.
+
+		It's intutive to construct the system:
+		\begin{align*}
+			f(s)=\frac{ds}{dt}=V_0-\frac{V_{max}s}{K_M+s}
+		\end{align*}
+		and we can find steady state.
+		\begin{gather*}
+			\frac{ds^{ss}}{dt}=V_0- \frac{V_{max}s^{ss}}{K_M+s^{ss}}=0 \Rightarrow s^{ss}=\frac{K_MV_0}{V_{max}-V_0}
+		\end{gather*}
+		Then, we can approximate original system by linearizing the dynamics around the steady state.
+		\begin{align*}
+			f(s)&\approx f(s^{ss})+\frac{df}{ds}|_{s=s^{ss}}(s-s^{ss})  \\
+				&=0+(-\frac{V_{max}(K_M+s^{ss})-V_{max}s^{ss}}{(K_M+s^{ss})^2})(s-s^{ss}) \\
+				&=-\frac{V_{max}K_M}{(K_M+s^{ss})^2})(s-s^{ss})\\
+			\Rightarrow f(x)&=-\frac{V_{max}K_M}{(K_M+s^{ss})^2})x(t)=-\frac{V_{max}K_M}{(K_M+\frac{K_MV_0}{V_{max}-V_0})^2})x(t)=-\frac{V_{max}}{K_M(1+\frac{V_0}{V_{max}-V_0})^2})x(t)
+		\end{align*}
+		\item Take parameter values $V_0 = 2$, $V_{max} = 3$, and $K_M = 1$ and run simulations of the nonlinear and linearized systems starting at initial conditions [S] = 2.1, [S] = 3, and [S] = 12. Comment on the discrepancy between the linear approximation and the original nonlinear model.
+	\end{enumerate}
+
+\section{4.8.13 Sensitivity analysis: reversible reaction. }
+	Consider the reversible reaction with mass-action rate constants as shown. \\
+	\begin{gather*}
+		A \xleftrightharpoons[k_2]{k_1} A*
+	\end{gather*}
+	Let T be the total concentration of A and A*.
+	\begin{enumerate}[a)]
+		\item Solve for the steady-state concentration of A* and verify that an increase in $k_1$ leads to an increase in $[A*]^{ss}$.
+		
+		First, we can write down these relationships:
+		\begin{gather*}
+			\frac{d[A]}{dt}=-k_1[A]+k_2[A*]\\
+			\frac{d[A*]}{dt}=k_1[A]-k_2[A*]\\
+			T = [A] + [A*]
+		\end{gather*}
+		Then, we can utilize differential equation of one of species and total concentration of A and A*.
+		\begin{align*}
+			&\frac{d[A]^{ss}}{dt}=-k_1[A]^{ss}+k_2[A*]^{ss}=-k_1[A]_{ss}+k_2(T-[A]^{ss})=-(k_1+k_2)[A]^{ss}+k_2T=0\\
+			&\Rightarrow [A]^{ss}=\frac{k_2T}{k_1+k_2}\\
+			&\Rightarrow [A*]^{ss}=T-[A]^{ss}=\frac{k_1T}{k_1+k_2}
+		\end{align*}
+		To verify the statement of the question, we can simply take derivative of $[A*]^{ss}$.
+		\begin{gather*}
+			\frac{d[A*]^{ss}}{dk_1}=\frac{d(\frac{k_1T}{k_1+k_2})}{dk_1}=\frac{T(k_1+k_2)-k_1T}{(k_1+k_2)^2}=\frac{k_2T}{(k_1+k_2)^2}>0
+		\end{gather*}	
+		where the positive slope verifies that the increasement in $k_1$ will lead to an increase in $[A*]^{ss}$
+
+		\item  Use parametric sensitivity analysis to determine whether the steady state concentration of A* is more sensitive to a 1 \% increase in T or a 1 \% increase in $k_1$. Does the answer depend on the values of the parameters?
+
+		First, we can extend the result of (a).
+		\begin{gather*}
+			\frac{\frac{d[A*]^{ss}}{[A]^{ss}}}{\frac{dk_1}{k_1}}=\frac{d[A*]^{ss}}{dk_1}\frac{k_1}{[A*]^{ss}}=\frac{k_2T}{(k_1+k_2)^2}\frac{k_1}{\frac{k_1T}{(k_1+k_2)}}=\frac{k_2}{k_1+k_2}
+		\end{gather*}
+		Then, we can also derive the relative sensitivity of $T$.
+		\begin{gather*}
+			\frac{\frac{d[A*]^{ss}}{[A]^{ss}}}{\frac{dT}{T}}=\frac{d[A*]^{ss}}{dT}\frac{T}{[A*]^{ss}}=\frac{k_1}{k_1+k_2}\frac{T}{\frac{k_1T}{k_1+k_2}}=1
+		\end{gather*}
+		Finally, we can conclude that the steady state concentration of A*  is more sensitive to a 1 \% increase in T than a 1 \% increase in $k_1$, because $\frac{k_2}{k_1+k_2}<1$ and it's independent to the values of the parameters.
+	\end{enumerate}
+\end{document}
