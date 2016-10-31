@@ -67,7 +67,7 @@
 \horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
 }
 
-\author{Yi Hsiao} % Your name
+\author{Yi Hsiao\\R04945027} % Your name
 
 \date{\normalsize\today} % Today's date or a custom date
 
@@ -143,9 +143,9 @@
 
 			Since the system is without X, the only reaction will happen in this system is $Y\rightarrow B$. The reaction will consume Y until that there is no Y any more.
 
-			\item Sketch a phase portrait for the system that is consistent with your conclusions from (iii) and (iv).
-
-
+			\item Sketch a phase portrait for the system that is consistent with your conclusions from (iii) and (iv).\\
+			\includegraphics[scale=0.3]{{4.8.6.a}.jpg}\\
+			The green line is a trajectory with a [X]=0 initial condition. You can see that it has a steady state that both [X] and [Y] are zero. The blue line is a trajectory of another steady-state.
 
 		\end{enumerate}
 		\item Repeat for the system
@@ -211,7 +211,10 @@
 
 			The situation is the same as counterpart of part (a). Since the system is without X, the only reaction will happen in this system is $Y\rightarrow B$. The reaction will consume Y until that there is no Y any more.
 
-			\item
+			\item The simulation result is shown below:\\
+			\includegraphics[scale=0.3]{{4.8.6.b}.jpg}\\
+			The green line is a trajectory with a [X]=0 initial condition. You can see that it has a steady state that both [X] and [Y] are zero. The blue line is a trajectory of another steady-state, which is a center. 
+
 		\end{enumerate}
 	\end{enumerate}
 
@@ -239,6 +242,15 @@
 			\Rightarrow f(x)&=-\frac{V_{max}K_M}{(K_M+s^{ss})^2})x(t)=-\frac{V_{max}K_M}{(K_M+\frac{K_MV_0}{V_{max}-V_0})^2})x(t)=-\frac{V_{max}}{K_M(1+\frac{V_0}{V_{max}-V_0})^2})x(t)
 		\end{align*}
 		\item Take parameter values $V_0 = 2$, $V_{max} = 3$, and $K_M = 1$ and run simulations of the nonlinear and linearized systems starting at initial conditions [S] = 2.1, [S] = 3, and [S] = 12. Comment on the discrepancy between the linear approximation and the original nonlinear model.
+
+		The simulation result is shown below. \\
+		\includegraphics[scale=0.3]{{4.8.8.b}.jpg}\\
+		The steady-state concentration of [S] is
+		\begin{gather*}
+			s^{ss}=\frac{K_MV_0}{V_{max}-V_0}=\frac{1\times 2}{3-2}=2
+		\end{gather*}
+		which is no matter what initial condition of the system. Although all linearized model can predict the same steady-state under different initial conditions, the transient of the systems have discrepancy between the linear approximation and the original nonlinear model. Larger the difference between inital condition and steady-state concentration, more discrepancy exist. The linear approximations here always achieve equlibriums faster and have higher initial consumption rates than original non-linear models.
+		
 	\end{enumerate}
 
 \section{4.8.13 Sensitivity analysis: reversible reaction. }
