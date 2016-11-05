@@ -87,7 +87,7 @@
 		\begin{enumerate}[i)]
 			\item Write a differential equation model describing the concentrations of X and Y
 			\begin{gather*}
-				\frac{d[X]}{dt} = -k_1[A][X]+2k_1[A][X]-k_2[X]^2=k_1[A][X]-k_2[X]^2\\
+				\frac{d[X]}{dt} = -k_1[A][X]+2k_1[A][X]-k_2[X]^2=k_1[A][X]-2k_2[X]^2\\
 				\frac{d[Y]}{dt} = k_2[X]^2-k_3[Y]
 			\end{gather*}
 
@@ -95,8 +95,8 @@
 
 			At steady-state,
 			\begin{align*}
-				&\frac{d[X]_{ss}}{dt}=0 \Rightarrow k_1[A]_{ss}[X]_{ss}-k_2[X]^2_{ss}=0 \Rightarrow [X]_{ss}(k_1[A]_{ss}-k_2[X]_{ss})=0 \\
-				&\Rightarrow [X]_{ss}=0 \quad or \quad [X]_{ss}=\frac{k_1}{k_2}[A]
+				&\frac{d[X]_{ss}}{dt}=0 \Rightarrow k_1[A]_{ss}[X]_{ss}-2k_2[X]^2_{ss}=0 \Rightarrow [X]_{ss}(k_1[A]_{ss}-2k_2[X]_{ss})=0 \\
+				&\Rightarrow [X]_{ss}=0 \quad or \quad [X]_{ss}=\frac{k_1}{2k_2}[A]
 			\end{align*}
 			At the same time,
 			\begin{align*}
@@ -104,7 +104,7 @@
 			\end{align*}
 			Then, we can conclude that there are two steady-state:
 			\begin{align*}
-				([X]_{ss},[Y]_{ss})=(0,0) \quad or \quad (\frac{k_1}{k_2}[A],\frac{k^2_1}{k_2k_3}[A]^2)
+				([X]_{ss},[Y]_{ss})=(0,0) \quad or \quad (\frac{k_1}{k_2}[A],\frac{k^2_1}{4k_2k_3}[A]^2)
 			\end{align*}
 			\item Determine the system Jacobian at the steady states and characterize the local behavior of the system near these points
 
@@ -129,7 +129,7 @@
 					0 &  -k_3
 				\end{bmatrix}
 			\end{align*}
-			Eigen values of this Jacobian matrix are $k_1[A]$ and $-k_3$. Since one of is postive and the other is negative, the steady-state here is a saddle point. When the system is at steady-state that $([X]_{ss},[Y]_{ss})=(\frac{k_1}{k_2}[A],\frac{k^2_1}{k_2k_3}[A]^2)$:
+			Eigen values of this Jacobian matrix are $k_1[A]$ and $-k_3$. Since one of is postive and the other is negative, the steady-state here is a saddle point. When the system is at steady-state that $([X]_{ss},[Y]_{ss})=(\frac{k_1}{k_2}[A],\frac{k^2_1}{4k_2k_3}[A]^2)$:
 			\begin{align*}
 				J =
 				\begin{bmatrix}
