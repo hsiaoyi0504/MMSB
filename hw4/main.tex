@@ -116,18 +116,36 @@ Consider the reaction network
 		Another way to generate exponential random number is to use Matlab function exprnd($\mu$), where $\mu$ is the mean of the exponential distribution $\mu$=1/$\lambda$. \\
 		Note2: You might need to change the value of $k_1$ and $k_{-1}$ for different initial conditions due to the volume changes. Use ($k_1$, $k_{-1}$) = (1,1), ( 1, 1/5) and (1, 1/50) ($time^{-1}$) for I.C.= (2,1,0), (10, 5, 0) , and (100, 50, 0).
 
+		The simulation result of $N_A$, $N_B$, and $N_C$=(2,1,0)\\
+		\includegraphics[scale=0.3]{{c.1}.jpg}\\
+		The simulation result of $N_A$, $N_B$, and $N_C$=(10, 5, 0)\\
+		\includegraphics[scale=0.3]{{c.2}.jpg}\\
+		The simulation result of $N_A$, $N_B$, and $N_C$=(100, 50, 0)\\
+		\includegraphics[scale=0.3]{{c.3}.jpg}
+
 		\item Set the initial condition of $N_A$, $N_B$, and $N_C$=(2, 1, 0). Analyzed the statistics of your ensemble, and compare to the steady state probability distribution in (b)
+
+		The simulation result of an ensemble of 3 sample paths (the bold line represents the average behaviour):\\
+		\includegraphics[scale=0.3]{{d.1}.jpg}\\
+		The simulation result of an ensemble of 10 sample paths:\\
+		\includegraphics[scale=0.3]{{d.2}.jpg}\\
+		The simulation result of an ensemble of 100 sample paths:\\
+		\includegraphics[scale=0.3]{{d.3}.jpg}
+		\\As the ensemble size increases, the averaged behavior approaches the deterministic prediction. I sampled the distribution of states at 10, which is already at steady-state, but the probability distribution of $N_A$, $N_B$, and $N_C$=(2,1,0), (1,2,1), (0,3,2) are 0.01, 0.01, 0.98. It is quite different from the result we derived in (b). It may due to the simulation conducted in a discrete manner, and the boundary conditions that should be followed further constrained and modified the original behaviour of the system.
+
+
 
 		\item Write down a deterministic model for the chemical reaction following the mass action law. Simulate the concentration changes of A, B C with the parameter $k_1$ = 1($s^{-1}$) and $k_{-1}$ = 1 ($mM^{-1}s^{-1}$). Set initial concentrations [A],[B],[C] as 2, 1, and 0mM. Compare simulation results in (c)
 
-		According to the question,
+		According to the question, we can easily list following equations:
 		\begin{align*}
 			&\frac{d[A]}{dt} = -k_1[A] + k_{-1}[B][C]\\
 			&\frac{d[B]}{dt} = k_1[A] - k_{-1}[B][C]\\
 			&\frac{d[C]}{dt} = k_1[A] - k_{-1}[B][C]
 		\end{align*}
-		The simulation result is shown in following figure:
-
+		The simulation result is shown in following figure:\\
+		\includegraphics[scale=0.3]{e.jpg}\\
+		Compared to the results obtained in (c), random behavior is not well-described by the deterministic simulation for small population size. Whereas it's a good description for large population size.
 
 	\end{enumerate}
 
