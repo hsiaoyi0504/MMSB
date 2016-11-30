@@ -85,7 +85,27 @@ Consider the reaction network
 	\begin{enumerate}[a)]
 		\item  Suppose that the system starts with two molecules of A, one molecule of B, and no molecules of C, that is ($N_A$,$N_B$, $N_C$) = (2, 1, 0). Determine the set of possible states the system can adopt and write the chemical master equation that describes the corresponding probability distribution.
 
+		All possible states of ($N_A$,$N_B$, $N_C$) are (2, 1, 0), (1,2,1), (0,3,1). Corresponding chemical master equation is:
+		\begin{align*}
+			&\frac{d}{dt}P((2,1,0),t)= -2k_1P((2,1,0),t)+2k_{-1}P((1,2,1),t) \\
+			&\frac{d}{dt}P((1,2,1),t)= -k_1P((1,2,1),t)-2k_{-1}P((1,2,1),t)+2k_1P((2,1,0),t)+6k_{-1}P((0,3,2),t)\\
+			&\frac{d}{dt}P((0,3,2),t)= -6k_{-1}P((0,3,2),t) + k_1P((1,2,1),t)
+		\end{align*}
+
 		\item Take $k_1$ = 1 ($time^{-1}$) and $k_{-1}$ = 1 ($time^{-1}$), and solve for the steady-state probability distribution.
+
+		At steady state,
+		\begin{align*}
+			&0= -2k_1P^{ss}((2,1,0),t)+2k_{-1}P^{ss}((u31,2,1),t) \\
+			&0= -k_1P^{ss}((1,2,1),t)-2k_{-1}P^{ss}((1,2,1),t)+2k_1P^{ss}((2,1,0),t)+6k_{-1}P^{ss}((0,3,2),t)\\
+			&0= -6k_{-1}P^{ss}((0,3,2),t) + k_1P^{ss}((1,2,1),t)\\
+			Also, &\quad P^{ss}((2,1,0),t)+P^{ss}((1,2,1),t)+P^{ss}((0,3,2),t)=1\\
+			\Rightarrow & 0 = -2P^{ss}((2,1,0),t)+2P^{ss}((1,2,1),t)\\
+			&0= -P^{ss}((1,2,1),t)-2P^{ss}((1,2,1),t)+2P^{ss}((2,1,0),t)+6P^{ss}((0,3,2),t)\\
+			&0= -6P^{ss}((0,3,2),t) + P^{ss}((1,2,1),t)\\
+			&P^{ss}((2,1,0),t)+P^{ss}((1,2,1),t)+P^{ss}((0,3,2),t)=1\\
+			\Rightarrow & P^{ss}((2,1,0),t)=\frac{6}{13}, \quad P^{ss}((1,2,1),t)=\frac{6}{13}, \quad P^{ss}((0,3,2),t)=\frac{1}{13}
+		\end{align*}
 
 		\item  Simulate sample paths of $N_A$, $N_B$, and $N_C$ using stochastic simulation algorithm (SSA). Set the initial condition of $N_A$, $N_B$, and $N_C$=(2,1,0) or (10, 5, 0) or (100, 50, 0)
 		\begin{align*}
@@ -94,11 +114,21 @@ Consider the reaction network
 		\end{align*}
 		Note1: To calculate the waiting time, you will need to generate values of a random variable distributed according to an exponential distribution. You could simply generate a random variable U drawn from the uniform distribution on the unit interval (0, 1), and T=-ln(U)/$\lambda$ will be an exponential random variable, where $\lambda$ is the rate parameter of the exponential distribution. In this example, $\lambda$ would be the sum of the reaction propensities. \\
 		Another way to generate exponential random number is to use Matlab function exprnd($\mu$), where $\mu$ is the mean of the exponential distribution $\mu$=1/$\lambda$. \\
-		Note2: You might need to change the value of $k_1$ and $k_{-1}$ for different initial conditions due to the volume changes. Use ($k_1$, $k_{-1}$) = (1,1), ( 1, 1/5) and (1, 1/50) ($time^{-1}$) for I.C.= (2,1,0) , (10, 5, 0) , and (100, 50, 0).
+		Note2: You might need to change the value of $k_1$ and $k_{-1}$ for different initial conditions due to the volume changes. Use ($k_1$, $k_{-1}$) = (1,1), ( 1, 1/5) and (1, 1/50) ($time^{-1}$) for I.C.= (2,1,0), (10, 5, 0) , and (100, 50, 0).
 
 		\item Set the initial condition of $N_A$, $N_B$, and $N_C$=(2, 1, 0). Analyzed the statistics of your ensemble, and compare to the steady state probability distribution in (b)
 
-		\item Write down a deterministic model for the chemical reaction following the mass action law. Simulate the concentration changes of A, B C with the parameter $k_1$ = 1($s^{-1}$) and $k_{-1}$ = 1 ($mM^{-1}s^{-1}$). Set initial concentrations [A],[B],[C] as 2,1, and 0mM. Compare simulation results in (c)
+		\item Write down a deterministic model for the chemical reaction following the mass action law. Simulate the concentration changes of A, B C with the parameter $k_1$ = 1($s^{-1}$) and $k_{-1}$ = 1 ($mM^{-1}s^{-1}$). Set initial concentrations [A],[B],[C] as 2, 1, and 0mM. Compare simulation results in (c)
+
+		According to the question,
+		\begin{align*}
+			&\frac{d[A]}{dt} = -k_1[A] + k_{-1}[B][C]\\
+			&\frac{d[B]}{dt} = k_1[A] - k_{-1}[B][C]\\
+			&\frac{d[C]}{dt} = k_1[A] - k_{-1}[B][C]
+		\end{align*}
+		The simulation result is shown in following figure:
+
+
 	\end{enumerate}
 
 
