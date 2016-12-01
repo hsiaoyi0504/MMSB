@@ -128,17 +128,13 @@ function [N,T]= SSA(IC,k)
         % state transition
         mu = rand(1);
         if mu < a1/asum
-            if A - 1 >= 0
-                B = B + 1;
-                C = C + 1;
-                A = A - 1;
-            end
+        	B = B + 1;
+            C = C + 1;
+            A = A - 1;
         else  %  a1/asum  <=  mu < 1
-            if C - 1 >= 0 && B -1 >= 0
-                A = A + 1;
-                B = B - 1;
-                C = C - 1;
-            end
+            A = A + 1;
+           	B = B - 1;
+            C = C - 1;
         end
         T(j) = t;
         N(j,:) = [A B C];
