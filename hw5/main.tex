@@ -83,15 +83,60 @@
 	\end{align*}
 	A complementary result, the Connectivity Theorem (Heinrich and Schuster, 1996) states that
 	\begin{align*}
-		C_{e_0}^J\epsilon_S^0+C_{e_1}^J\epsilon_S^1=1
+		C_{e_0}^J\epsilon_S^0+C_{e_1}^J\epsilon_S^1=0
 	\end{align*}
 	\begin{enumerate}[a)]
 		\item Use these two statements to determine the flux control coefficients of the two reactions as
-		\item example q2
+		\begin{align*}
+			C_{e_0}^J=\frac{\epsilon_S^1}{\epsilon_S^1-\epsilon_S^0}\\
+			C_{e_1}^J=\frac{-\epsilon_S^0}{\epsilon_S^1-\epsilon_S^0}
+		\end{align*}
+
+		According to Cramer's Rule, it is easy to solve these two variables equations:
+		\begin{align*}
+			C_{e_0}^J=\frac{
+				\begin{vmatrix}
+					1 & 1  \\
+   					0 & \epsilon_S^1
+				\end{vmatrix}
+			}{
+				\begin{vmatrix}
+					1 & 1  \\
+   					\epsilon_S^0 & \epsilon_S^1
+				\end{vmatrix}
+			}=\frac{\epsilon_S^1}{\epsilon_S^1-\epsilon_S^0}\\
+			C_{e_1}^J=\frac{
+				\begin{vmatrix}
+					1 & 1  \\
+   					\epsilon_S^0 & 0
+				\end{vmatrix}
+			}{
+				\begin{vmatrix}
+					1 & 1  \\
+   					\epsilon_S^0 & \epsilon_S^1
+				\end{vmatrix}
+			}=\frac{-\epsilon_S^0}{\epsilon_S^1-\epsilon_S^0}
+		\end{align*}
+
+		\item In addressing the control of flux through the pathway, we can think of $v_0$ as the 'supply rate' and $v_1$ as the 'demand rate'. Given the result in part (a), under what conditions on the elasticities $\epsilon_S^0$ and $\epsilon_S^1$ will a perturbation in the rate of supply affect pathway flux more than an equivalent perturbation in the rate of demand?
+
+
+
+		\item Suppose the rate laws are given as $v_0 = e_0(k_0X - k_{-1}[S])$ and $v_1 = e_1k_1[S]$, where X is the constant concentration of the pathway substrate. Verify that the elasticities are
+		\begin{align*}
+			\epsilon_S^0 &= \frac{k_{-1}[S]}{k_0X-k_{-1}[S]}\\
+			and \quad \epsilon_S^1 &= 1
+		\end{align*}
+		Determine conditions on the parameters under which perturbation in the supply reaction $v_0$ will have a more significant effect than perturbation in the demand reaction $v_1$. Hint: at steady state $k_0X-k_{-1}s = e_1k_1s/e_0$.
+
+
+
 	\end{enumerate}
-\section{question B}
+
+\section{6.8.18 Frequency response analysis of a two-component signaling pathway}
 	\begin{enumerate}[a)]
-		\item example q1
+		\item Following the procedure in Section 6.6.3, determine the linearization of the two-component signaling pathway model of Section 6.1.1 at an arbitrary nominal input value. Use species conservations to reduce the model before linearizing.
+
 		\item example q2
 	\end{enumerate}
 \end{document}
