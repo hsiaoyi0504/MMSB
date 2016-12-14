@@ -129,7 +129,11 @@
 		\end{align*}
 		Determine conditions on the parameters under which perturbation in the supply reaction $v_0$ will have a more significant effect than perturbation in the demand reaction $v_1$. Hint: at steady state $k_0X-k_{-1}s = e_1k_1s/e_0$.
 
-
+		According to the definition of the elasticity,
+		\begin{align*}
+			\epsilon_S^0 &= \frac{[S]}{v_0}\frac{\partial v_0}{\partial[S]}=\frac{[S]}{e_0(k_0X - k_{-1}[S])}e_0k_{-1}=\frac{k_{-1}[S]}{k_0X - k_{-1}[S]} \\
+			\epsilon_S^1 &= \frac{[S]}{v_1}\frac{\partial v_1}{\partial[S]}=\frac{[S]}{e_1k_1[S]}e_1k_1=1
+		\end{align*}
 
 	\end{enumerate}
 
@@ -137,6 +141,10 @@
 	\begin{enumerate}[a)]
 		\item Following the procedure in Section 6.6.3, determine the linearization of the two-component signaling pathway model of Section 6.1.1 at an arbitrary nominal input value. Use species conservations to reduce the model before linearizing.
 
-		\item example q2
+		\item Simulate the model to determine the steady state corresponding to a nominal input of LT = 0.04. Use MATLAB to generate the magnitude Bode plot of the corresponding frequency response (details in Appendix C).
+
+		\item  Repeat part (b) for a nominal input of of LT = 0.4. Use Figure 6.3 to explain the difference in the frequency response at these two nominal input values.
 	\end{enumerate}
+	Appendix C- Frequency response analysis
+	As discussed in Section 6.6, a linear input-output system can be specified as a set of four matrices: A,B, C, and D. Once these are specified in MATLAB, the frequency response can be easily generated and the corresponding Bode plots can be produced. The command [numden]=ss2tf(A,B,C,D) determines the transfer function for the system, specified in terms of the coefficients of the numerator and denominator polynomials. A MATLAB transfer function can then be created with the command sys=tf(num,den), from which Bode plots can be produced with bode(sys).
 \end{document}
