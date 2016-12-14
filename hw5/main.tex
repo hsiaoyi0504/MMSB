@@ -120,21 +120,30 @@
 
 		\item In addressing the control of flux through the pathway, we can think of $v_0$ as the 'supply rate' and $v_1$ as the 'demand rate'. Given the result in part (a), under what conditions on the elasticities $\epsilon_S^0$ and $\epsilon_S^1$ will a perturbation in the rate of supply affect pathway flux more than an equivalent perturbation in the rate of demand?
 
-
+		When a perturbation in the rate of supply affect pathway flux more than an equivalent perturbation in the rate of demand, $C_{e_0}^J>C_{e_0}^J$, so
+		\begin{align*}
+		&\frac{\epsilon_S^1}{\epsilon_S^1-\epsilon_S^0} > \frac{-\epsilon_S^0}{\epsilon_S^1-\epsilon_S^0} \\
+		\Rightarrow &\epsilon_S^1 >-\epsilon_S^0
+		\end{align*}
 
 		\item Suppose the rate laws are given as $v_0 = e_0(k_0X - k_{-1}[S])$ and $v_1 = e_1k_1[S]$, where X is the constant concentration of the pathway substrate. Verify that the elasticities are
 		\begin{align*}
-			\epsilon_S^0 &= \frac{k_{-1}[S]}{k_0X-k_{-1}[S]}\\
+			\epsilon_S^0 &= \frac{-k_{-1}[S]}{k_0X-k_{-1}[S]}\\
 			and \quad \epsilon_S^1 &= 1
 		\end{align*}
 		Determine conditions on the parameters under which perturbation in the supply reaction $v_0$ will have a more significant effect than perturbation in the demand reaction $v_1$. Hint: at steady state $k_0X-k_{-1}s = e_1k_1s/e_0$.
 
 		According to the definition of the elasticity,
 		\begin{align*}
-			\epsilon_S^0 &= \frac{[S]}{v_0}\frac{\partial v_0}{\partial[S]}=\frac{[S]}{e_0(k_0X - k_{-1}[S])}e_0k_{-1}=\frac{k_{-1}[S]}{k_0X - k_{-1}[S]} \\
+			\epsilon_S^0 &= \frac{[S]}{v_0}\frac{\partial v_0}{\partial[S]}=\frac{[S]}{e_0(k_0X - k_{-1}[S])}(-e_0k_{-1})=\frac{-k_{-1}[S]}{k_0X - k_{-1}[S]} \\
 			\epsilon_S^1 &= \frac{[S]}{v_1}\frac{\partial v_1}{\partial[S]}=\frac{[S]}{e_1k_1[S]}e_1k_1=1
 		\end{align*}
-
+		From the result of b), to get a perturbation in the supplyreaction that has a more significant effect than perturbation in the demand reaction, we need $\epsilon_S^1 >-\epsilon_S^0$, so
+		\begin{align*}
+			& \epsilon_S^1 = 1 > -\frac{-k_{-1}[S]}{k_0X-k_{-1}[S]} = -\epsilon_S^0\\
+			& \Rightarrow k_0X-k_{-1}[S] > k_{-1}[S] \\
+			& \Rightarrow k_0X > 2k_{-1}[S] 
+		\end{align*}
 	\end{enumerate}
 
 \section{6.8.18 Frequency response analysis of a two-component signaling pathway}
@@ -290,8 +299,10 @@
 		\end{align*}
 		Low frequency gain is then
 		\begin{align*}
-			Gain(0)=\frac{480}{\sqrt{(2.4)^2}}=480/2.4=200
+			Gain(0)=\frac{480}{\sqrt{(2.4)^2}}=480/2.4=200=46.02dB
 		\end{align*}
+		The MATLAB simulation result is shown below. It also confirms the derivation above.\\
+		\includegraphics[scale=0.3]{{2.b}.jpg}
 
 		\item  Repeat part (b) for a nominal input of of $L_T = 0.4$. Use Figure 6.3 to explain the difference in the frequency response at these two nominal input values.
 
@@ -348,8 +359,13 @@
 		\end{align*}
 		Low frequency gain is then
 		\begin{align*}
-			Gain(0)=\frac{480}{\sqrt{(6)^2}}=480/6=80
+			Gain(0)=\frac{480}{\sqrt{(6)^2}}=480/6=80=38.06dB
 		\end{align*}
+		The MATLAB simulation result is shown below. It also confirms the derivation above.\\
+		\includegraphics[scale=0.3]{{2.c}.jpg}
+
+		The shape of these two bode plot are similar. However, the bode plot of lower $L_T$ shows larger magnitude of gain than higher $L_T$. This behaviror can be explained by figure 6.3. As you can see in figure 6.3.B, lower total ligand concentration results in higher ratio for response(active response protein) to input signals (slope is larger when the total ligand concentration is lower).
+
 	\end{enumerate}
 	Appendix C- Frequency response analysis \\
 	As discussed in Section 6.6, a linear input-output system can be specified as a set of four matrices: A,B, C, and D. Once these are specified in MATLAB, the frequency response can be easily generated and the corresponding Bode plots can be produced. The command [num den]=ss2tf(A,B,C,D) determines the transfer function for the system, specified in terms of the coefficients of the numerator and denominator polynomials. A MATLAB transfer function can then be created with the command sys=tf(num,den), from which Bode plots can be produced with bode(sys).
