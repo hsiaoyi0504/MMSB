@@ -4,6 +4,8 @@
 % Figure 7.7
 
 function lac_operon
+clc
+close all
 %declare parameters
 global delta_M
 global delta_Y
@@ -55,7 +57,6 @@ Le_timecourse=[0 0 50 50     100  100   150 150   0    0];
 %generate figure 7.7A
 figure(1)
 hold on
-set(gca,'fontsize',14)
 plot(t,s(:,2)/4,'k','Linewidth', 3)
 hold off
 xlabel('Time (min)')
@@ -66,15 +67,11 @@ h2 = axes('Position',get(h1,'Position'));
 hold on
 plot([0,1],[-1,-1],'k', 'Linewidth', 3)
 plot(t_timecourse, Le_timecourse, 'k-.', 'Linewidth', 2)
-ylabel('External lactose concentration (\mu M)','fontsize', 14)
-legend('\beta-galactosidase (b)', 'external lactose (L_e)', 'fontsize',14)
+ylabel('External lactose concentration (\mu M)')
+legend('\beta-galactosidase (b)', 'external lactose (L_e)')
 axis([0 Tend 0 300])
-set(h2,'YAxisLocation','right','Color','none','XTickLabel',[],'fontsize', 14)
-str1(1) = {'A'};
-text(-430,300,str1, 'Fontsize', 40)
+set(h2,'YAxisLocation','right','Color','none','XTickLabel',[])
  
-
-
 %generate dose-response 
 flag=2;
 
@@ -97,20 +94,46 @@ pertLeVec(i)=Le;
 pertYVec(i)=s(length(t),2);
 end
 
-%generate Figure 7.7B`
-figure(2)
-set(gca,'fontsize',14)
+%generate Figure 7.7B
+fig = figure(2);
 plot(compLeVec,compYVec/4, 'k-', 'LineWidth', 3)
 hold on
 plot(pertLeVec,pertYVec/4, 'k--','LineWidth', 3)
 xlabel('External lactose concentration (\muM)')
-ylabel('\beta-galactosidase concentration (molecules per cell)')
+ylabel('beta-galactosidase concentration (molecules per cell)')
 axis([0 100 0 100])
 legend('Original model', 'Modified model')
-str1(1) = {'B'};
-text(-15,100,str1, 'Fontsize', 40)
 hold off
+saveas(fig,'../img/1.a.jpg');
 
+a0=0.1;
+%run simulations to steady state over a range of fixed inputs
+N=180;
+compYVec=zeros(1,N);
+compLeVec=zeros(1,N);
+pertYVec=zeros(1,N);
+pertLeVec=zeros(1,N);
+for i=1:N
+Le=120*(i-1)/N;
+[t,s] = ode15s(ODEFUN,[0,Tend], s0);
+compLeVec(i)=Le;
+compYVec(i)=s(length(t),2);
+[t,s] = ode15s(ODEFUN2,[0,Tend], s0);
+pertLeVec(i)=Le;
+pertYVec(i)=s(length(t),2);
+end
+
+%generate Figure 7.7B
+fig = figure(3;)
+plot(compLeVec,compYVec/4, 'k-', 'LineWidth', 3)
+hold on
+plot(pertLeVec,pertYVec/4, 'k--','LineWidth', 3)
+xlabel('External lactose concentration (\muM)')
+ylabel('beta-galactosidase concentration (molecules per cell)')
+axis([0 100 0 150])
+legend('Original model', 'Modified model')
+hold off
+saveas(fig,'../img/1.b.jpg');
 
 end
 
@@ -120,6 +143,7 @@ function dS=lacmodelddt(t,s)
 global delta_M
 global delta_Y
 global delta_L
+global a0
 global a1
 global RToverK1
 global K2
@@ -160,7 +184,7 @@ B=Y/4;
 A=L;
 
 %dynamics
-dMdt=aghjkl;l0 + a1*1/(1+RToverK1*(K2/(K2+A))^4) - delta_M*M;
+dMdt=a0 + a1*1/(1+RToverK1*(K2/(K2+A))^4) - delta_M*M;
 dYdt=c1*M - delta_Y*Y;
 dLdt=kL*Y*Le/(KML+Le) - 2*kg*B*L/(KMg+L) - delta_L*L;
    
