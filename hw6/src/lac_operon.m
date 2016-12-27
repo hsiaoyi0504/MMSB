@@ -124,7 +124,7 @@ pertYVec(i)=s(length(t),2);
 end
 
 %generate Figure 7.7B
-fig = figure(3;)
+fig = figure(3);
 plot(compLeVec,compYVec/4, 'k-', 'LineWidth', 3)
 hold on
 plot(pertLeVec,pertYVec/4, 'k--','LineWidth', 3)
