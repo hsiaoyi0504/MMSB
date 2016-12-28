@@ -1,0 +1,120 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Short Sectioned Assignment
+% LaTeX Template
+% Version 1.0 (5/5/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{enumerate}
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+\sectionfont{\raggedright}
+\usepackage[english]{babel}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\graphicspath{ {img/} }
+\DeclareGraphicsExtensions{.png,.jpg}
+\usepackage{color}
+\usepackage{pbox}
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{National Taiwan University, \\ Graduate Institute of Biomedical Engineering and Bioinformatics} \\ [25pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge BEBI5009:\\Mathematical Modeling of System Biology \\ Homework 6 \\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{Yi Hsiao\\R04945027} % Your name
+
+\date{\normalsize\today} % Today's date or a custom date
+
+\begin{document}
+
+\maketitle % Print the title
+
+\newpage
+\section{7.8.5 The lac operon: effect of leak.}
+	Consider the model of the lac operon presented in Section 7.2.1, with parameter values as in Figure 7.7. The dose-response curve in Figure 7.7B indicates that the system shows little response to external lactose levels below 55 $\mu$M. Modify the model by adding a small 'leak' rate of transcription from the operon: add a constant term a0 to the mRNA production rate in equation (7.11). Set $a_0 = 0.01$ molecules/min. Run simulations to determine how this change affects the triggering threshold. Explain your result in terms of the system behavior. How does the system behave when $a_0 = 0.1$?
+
+	With $a_0 = 0.01$, we will get the following figure:\\
+	\includegraphics[scale=0.25]{{1.a}.jpg}\\
+	With $a_0 = 0.1$, we will get the following figure:\\
+	\includegraphics[scale=0.25]{{1.b}.jpg}\\
+	Compared with the original figures in figure 7.7B, these figures show that the larger the leak rate of transcription exists, the higher $\beta$-galactosidase concentrations of steady states are. Also, the the larger the leak rate of transcription exists, the lower the external lactose concentrations will cause the switching.
+
+\section{8.6.2 Morris-Lecar model: refractory period.}
+	Consider the Morris-Lecar model (equations (8.12) and (8.13)). Using the parameter values in Figure 8.6, simulate the system to steady state. Run a second simulation that starts at steady state, and introduces a ten millisecond (msec) pulse of $I_{applied} = 150$ picoamperes/cm2, thus triggering an action potential. Next, augment your simulation by introducing a second, identical 10 milliseconds burst of $I_{applied}$ that begins 100 milliseconds after the end of the first pulse. Verify that this triggers a second action potential that is identical to the first. Next, explore what happens when less time elapses between the two triggering events. What is the response if the 10-msec pulses are separated by only 60 msec? 30 msec? For each case, plot the gating variable w(t) as well as the voltage V (t). Verify that even after the voltage has returned to near-rest levels, a second action potential cannot be triggered until the gating variable w(t) has returned to its resting value. Provide an interpretation of this behaviour.
+
+
+	The simulation result of steady state are shown below two figures:\\
+	\includegraphics[scale=0.25]{{2.a.v}.jpg}\\
+	\includegraphics[scale=0.25]{{2.a.w}.jpg}
+
+	\newpage
+	It looks like nothing happened, but if you look closer, it does have some fluctuations, as shown in following two figures:\\
+	\includegraphics[scale=0.25]{{2.a.v-l}.jpg}\\
+	\includegraphics[scale=0.25]{{2.a.w-l}.jpg}\\
+
+	If we introduce a 10 millisecond (msec) pulse, the simulation result will be:\\
+	\includegraphics[scale=0.25]{{2.b.v}.jpg}\\	
+	\includegraphics[scale=0.25]{{2.b.w}.jpg}
+
+	By introducing a second, identical 10 milliseconds burst of $I_{applied}$ that begins 100 milliseconds after the end of the first pulse, we will get these:\\
+	\includegraphics[scale=0.25]{{2.c.v}.jpg}\\	
+	\includegraphics[scale=0.25]{{2.c.w}.jpg}
+
+	\newpage
+	The response if the 10-msec pulses are separated by only 60 msec:\\
+	\includegraphics[scale=0.25]{{2.d.v}.jpg}\\	
+	\includegraphics[scale=0.25]{{2.d.w}.jpg}
+
+	The response if the 10-msec pulses are separated by only 30 msec:\\
+	\includegraphics[scale=0.25]{{2.e.v}.jpg}\\	
+	\includegraphics[scale=0.25]{{2.e.w}.jpg}
+
+	These results can make us conclude that the second action potential cannot be triggered until the gating variable w(t) has returned to its resting value. The interpretation of this phenomenon can be interpreted by the differential equation (8.12), the second term gives negative contribution to $\frac{dV(t)}{dt}$, and it is multiplied by w(t). With larger w(t), this term will cause lower $\frac{dV(t)}{dt}$. Thus, it can't drive the V(t) as large as expected. 
+
+\end{document}
