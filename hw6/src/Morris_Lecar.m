@@ -91,6 +91,7 @@ plot(t1, S1(:,2));
 xlabel('Time (msec)');
 ylabel('Voltage (mV)');
 title('w(t)');
+axis([0 200 0 1]);
 saveas(fig,'../img/2.b.w.jpg');
 
 flag = 2;
